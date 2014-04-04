@@ -1,65 +1,85 @@
-<!doctype html>
-<head>
-  <meta charset="utf-8">
-
-  <title>My Parse App</title>
-  <meta name="description" content="My Parse App">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
-</head>
-
-<body>
-  
-  <div id="main">
-    <h1>You're ready to use Parse!</h1>
-
-    <p>Read the documentation and start building your JavaScript app:</p>
-
-    <ul>
-      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
-      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
-    </ul>
-
-    <div style="display:none" class="error">
-      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
-    </div>
-
-    <div style="display:none" class="success">
-      <p>We've also just created your first object using the following code:</p>
-      
-        <code>
-          var TestObject = Parse.Object.extend("TestObject");<br/>
-          var testObject = new TestObject();<br/>
-          testObject.save({foo: "bar"});
-        </code>
-    </div>
-  </div>
-
-  <script type="text/javascript">
-    Parse.initialize("dk4vpoxxrrgYH87I9Q9XFcLgIlurbJ0an1SEPtnl", "F12IoKqBQjqOBUj0dl8SEWlaroZvFnjGmGLVKv17");
-    
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}).then(function(object) {
-        alert("yay! it worked");
-      });
-
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-
-
-    });
-  </script>
-</body>
-
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+	<head>
+		<title>cuisine website for high end mobiles,like samsung nokia mobile website templates for free | Home :: w3layouts</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<meta name="keywords" content="cuisine iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+	</head>
+	</head>
+	<body>
+		<!---start-wrap---->
+			<div class="wrap">
+			<div class="bg">
+     		 <div class="top-header">
+     		 	<div class="back-button">
+     		 		<a href="home.html">back</a>
+     		 	</div>
+     		 	<div class="clear"> </div>
+     		 	<div class="main-header">
+     		 		<div class="logo">
+     		 			<h1><a href="index.html"><img src="images/logo.png" title="logo" /></a></h1>
+     		 		</div>
+     		 		<div class="clear"> </div>
+     		 	</div>
+     		 </div>
+     		</div>
+     		  <!----End-top-header----->
+			<!---End-header---->
+			<!---start-content---->
+			<div class="content">
+						<div class="top-grids">
+							<div class="top-grid">
+								<h3>Welcome</h3>
+								<img src="images/slider1.jpg" title="image-name" />
+								<a href="#">Read more</a>
+							</div>
+							<div class="top-grid">
+								<h3>Our history</h3>
+								<img src="images/slider2.jpg" title="image-name" />
+								<a href="#">Read more</a>
+							</div>
+							<div class="top-grid" id="last-grid">
+								<h3>Our Events</h3>
+								<img src="images/slider3.jpg" title="image-name" />
+								<a href="#">Read more</a>
+							</div>
+							<div class="clear"> </div>
+						</div>
+						<div class="clear"> </div>
+						<div class="bottom-grids">
+							<div class="bottom-grid-videos">
+								<h3>Watch the Video</h3>
+								<div class="video-grid">
+									<img src="images/v1.jpg" title="video-name" />
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at accumsan justo. Vivamus eget volpat lacus nec tristique leoestibulum.</p>
+								</div>
+								<div class="video-grid">
+									<img src="images/v2.jpg" title="video-name" />
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at accumsan justo. Vivamus eget volpat lacus nec tristique leoestibulum.</p>
+								</div>
+								<div class="clear"> </div>
+							</div>
+							<div class="clear"> </div>
+						</div>
+				</div>
+			<!---End-content---->
+		</div>
+		<!---End-wrap---->
+		</div>
+		<div class="footer">
+				<div class="top-to-page">
+						<a href="#top" class="scroll"> </a>
+						<div class="clear"> </div>
+					</div>
+					<p>Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+			</div>
+	</body>
 </html>
+
