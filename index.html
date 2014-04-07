@@ -19,6 +19,40 @@
 
     <!-- Custom Theme CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
+    <script language="javascript">
+        
+        var TEST = "";
+        //takes a javascript array of ingredients right now (may need to change for interface requirements?)
+        //returns the API search term string
+        function getIngredients(ingredients) {
+            var str = "";
+            for(var i = 0; i < ingredients.length - 1; i++){
+                var withplus = ingredients[i] + "+";
+                str += withplus;
+            }
+            str += ingredients[ingredients.length - 1];
+            return str;
+        }
+        
+        function searchRecipes() {
+            var foods = getIngredients(["fish","butter"]);
+            var callback = "&callback=?"
+            var apiURL = "http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&q="
+            var queryString = apiURL + foods + callback;
+            
+            $.getJSON(queryString, function(data){
+                TEST = data;
+                var recipes = '';
+                for(var i = 0; i < 10; i++){
+                    recipes += (data.matches[i].recipeName + "\n");
+                }
+                alert(recipes);
+                
+            });
+            
+        }
+    
+    </script>
 
 </head>
 
@@ -77,9 +111,9 @@
         <div class="download-section">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
+				<button onclick="searchRecipes()"> TRY ME </button>
 				
-				
-				<a href="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&chicken" class="btn btn-default btn-lg">find recipes</a>
+				<a onclick= "searchRecipes()" href="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&chicken" class="btn btn-default btn-lg">find recipes</a>
 				
                 
             </div>
@@ -132,7 +166,7 @@
 	
 	<!-- Yummly API Key -->
 	<!-- The URL still needs search params -->
-    <script type="text/javascript" src="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&your_search_parameters"
+    <script type="text/javascript" src="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&q=chicken+rice"
 	>
 	</script>
 
