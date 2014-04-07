@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Foodly</title>
+    <title>Foodly: Your Pantry, Your Food</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">Use</span> Foodly
+                    <i class="fa fa-play-circle"></i>  <span class="light">Try</span> Foodly
                 </a>
             </div>
 
@@ -44,9 +44,6 @@
                     </li>
                     <li class="page-scroll">
                         <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#download">Download</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
@@ -66,7 +63,7 @@
                         <h1 class="brand-heading">Foodly</h1>
                         <p class="intro-text">Your pantry, your food.</p>
                         <div class="page-scroll">
-                            <a href="#about" class="btn btn-circle">
+                            <a href="#foodly" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
                             </a>
                         </div>
@@ -75,11 +72,24 @@
             </div>
         </div>
     </section>
+	
+	<section id="foodly" class="content-section text-center">
+        <div class="download-section">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>My Pantry</h2>
+				
+				
+				<a href="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&your_search_parameters" class="btn btn-default btn-lg">find recipes</a>
+				
+                
+            </div>
+        </div>
+    </section>
 
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Grayscale</h2>
+                <h2>About Foodly</h2>
                 <p>Grayscale is a premium quality, free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, all you need to do is download the template on the preview page. You can use this template for any purpose, personal or commercial.</p>
                 <p>This striking, black and white theme features stock photographs by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Map skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
                 <p>With this template, just the slightest splash of color can make a huge impact on the overall presentation and design.</p>
@@ -102,15 +112,11 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
+                <h2>Contact Foodly</h2>
                 <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
                 <p>feedback@startbootstrap.com</p>
-                <ul class="list-inline banner-social-buttons">
-                    <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li><a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                <ul class="list-inline banner-social-buttons">                  
+                    <li><a href="https://github.com/moliri/foodly" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
                 </ul>
             </div>
@@ -126,6 +132,12 @@
 
     <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+	
+	<!-- Yummly API Key -->
+	<!-- The URL still needs search params -->
+    <script type="text/javascript" src="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&your_search_parameters"
+	>
+	</script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
