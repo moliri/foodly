@@ -48,12 +48,12 @@
             
             $.getJSON(queryString, function(data){
                 TEST = data;
-                var recipes = '';
+                var recipes = "";
                 for(var i = 0; i < 10; i++){
                     recipes += (data.matches[i].recipeName + "\n");
                 }
                 alert(recipes);
-                
+               
             });
             
         }
