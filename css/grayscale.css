@@ -277,24 +277,26 @@ a:focus {
 .btn {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 400;
+    font-weight: 800;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
 .btn-default {
-    border: 1px solid #28c3ab;
-    color: #28c3ab;
-    background-color: transparent;
+    border: 1px solid #a60000;
+    color: #ffffff;
+    background-color: #a60000;
+	opacity: 0.6
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #28c3ab;
+    border: 1px solid #a60000;
     outline: 0;
-    color: #000;
-    background-color: #28c3ab;
+    color: #ffffff;
+    background-color: #a60000;
+	opacity: 1.0
 }
 
 .btn-huge {
