@@ -19,6 +19,15 @@
 
     <!-- Custom Theme CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
+	
+	<!-- Parse ToDo CSS -->
+	<link href="css/todos.css" media="all" rel="stylesheet" type="text/css"/>
+	
+	<!-- Scripts -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/underscore-1.1.6.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+    <script src="js/todos.js"></script>	
 
 </head>
 
@@ -78,11 +87,37 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
 				
+				<input id = "newItem" placeholder="  Add a pantry item...  " type="text" />
+				<input type="button" class="btn btn-default btn-sm" value="+" id="btnSave" />
+				
+				<div id="cblist">
+				</div>
+
+				<script type="text/javascript">
+				$(document).ready(function() {
+					$('#btnSave').click(function() {
+						addCheckbox($('#newItem').val());
+					});
+				});
+
+				function addCheckbox(name) {
+				   var container = $('#cblist');
+				   var inputs = container.find('input');
+				   var id = inputs.length+1;
+
+				   $('<input />', { type: 'checkbox', id: 'cb'+id, value: name }).appendTo(container);
+				   $('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
+				   $('<br />').appendTo(container);
+				}
+				</script>
 				
 				<a href="http://api.yummly.com/v1/api/recipes?_app_id=530cbd64&_app_key=7ddb19332c3de6a14405af6bffae0aad&chicken" class="btn btn-default btn-lg">find recipes</a>
 				
                 
             </div>
+			<div id="credits">
+					<br /><br /><br /><br />Powered by <a href="https://www.parse.com">Parse</a> using the <a href="https://www.parse.com/docs/js_guide">JavaScript SDK</a>.
+			</div>
         </div>
     </section>
 
