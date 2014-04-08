@@ -126,6 +126,7 @@
 				$(document).ready(function() {
 					$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
+                        $('#newItem').val('');
 					});
 				});
 
@@ -134,11 +135,14 @@
                        var container = $('#cblist');
                        var inputs = container.find('input');
                        var id = inputs.length+1;
+                       
+                       
 
                        $('<input />', { type: 'checkbox', id: 'cb'+id, value: name }).appendTo(container);
                        $('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
                        $('<br />').appendTo(container);
                    }
+                   
 				}
 				</script>
 				
