@@ -137,6 +137,7 @@
                     if(name !== ""){
                        var container = $('#cblist');
                        var inputs = container.find('input');
+                       //alert(inputs);
                        var id = inputs.length+1;
                        
                        
@@ -149,18 +150,20 @@
 				}
 				
 				function updateSearch() {
-					var len = $('#cblist').length;
+					//var len = $('#cblist').length;
+                    var len = 20;
+                    //alert(len);
 					var myIngredients=[];
 					for (var i=0; i<=len; i++) {
 						var isChecked = $('#cb'+i).is(':checked');
-						if (isChecked) {
+						if (isChecked)
+                         {
 							myIngredients.push($('#cb'+i).next("label").text());
-							len++;
-						}
-						else {
-						<!--	updateSearch(); -->
-						}
-					}
+                        }
+                    }
+						//else {
+						//<!--	updateSearch(); -->
+						//}
 					return myIngredients;
 					
 				}
