@@ -39,14 +39,6 @@
         //registering callbacks
         $(document).ready(function () {$("#searchButton").click(searchRecipes)});
 		
-		function getAPIinfo() {
-			var id;
-			var key;
-			
-			
-			var APIinfo = id + key;
-			return APIinfo;
-		}
         
         function searchRecipes() {
 			var ingreds = updateSearch();
@@ -58,11 +50,20 @@
 			var callback = "&callback=?"
             var queryString = apiURL + requestInfo + foods + callback;
 			
-			//need to figure out how to retrieve HTTP response error (409) 
+			$(function() {	
+				$.ajax(queryString, 
+				{
+					statusCode: {
+					409: function() {
+						id = "2daedd08"
+						key = "9660aeb80292c3128c93bd8e904e1490"
+						alert('An API Call error occured, please try again.');
+						}
+					}
+				});
+			});
+		
 			
-			//if error
-				//id = new id
-				//key = mew key
             
             $.getJSON(queryString, function(data){
                 TEST = data;
