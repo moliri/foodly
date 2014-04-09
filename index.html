@@ -38,13 +38,31 @@
         
         //registering callbacks
         $(document).ready(function () {$("#searchButton").click(searchRecipes)});
+		
+		function getAPIinfo() {
+			var id;
+			var key;
+			
+			
+			var APIinfo = id + key;
+			return APIinfo;
+		}
         
         function searchRecipes() {
 			var ingreds = updateSearch();
             var foods = getIngredients(ingreds);
-            var callback = "&callback=?"
-            var apiURL = "http://api.yummly.com/v1/api/recipes?_app_id=b8a751c0&_app_key=007d17e544de591f7b7bc27ad695f2cd&q="
-            var queryString = apiURL + foods + callback;
+            var apiURL = "http://api.yummly.com/v1/api/recipes?"
+			var id = "b8a751c0";
+			var key = "007d17e544de591f7b7bc27ad695f2cd";
+			var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
+			var callback = "&callback=?"
+            var queryString = apiURL + requestInfo + foods + callback;
+			
+			//need to figure out how to retrieve HTTP response error (409) 
+			
+			//if error
+				//id = new id
+				//key = mew key
             
             $.getJSON(queryString, function(data){
                 TEST = data;
