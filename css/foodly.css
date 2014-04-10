@@ -142,6 +142,10 @@ a:focus {
     vertical-align: middle;
 }*/
 
+.ui-panel-wrapper {
+    background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
+}
+
 .brand-heading {
     font-size: 40px;
     color: white;
