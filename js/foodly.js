@@ -43,7 +43,7 @@ function searchRecipes() {
 	$.getJSON(queryString, function(data){   
         updateSearch(); // possibly unnecessary - if performance becomes an issue we can try to get rid of this
         
-		var recipes = "";       
+		var recipes = "";
         // check for no recipes
         var recipesOK = false;
         if(!data || !data.matches || (data.matches.length === 0)){
@@ -57,7 +57,7 @@ function searchRecipes() {
             for(var i = 0; i < 10; i++){
                 if(data.matches[i]) { //check for undefined
                     recipes += (data.matches[i].recipeName + "\n");
-                    recipeList.push(data.matches[i].recipeName);
+                    recipeList.push(data.matches[i]);
                 }
             }
             $.mobile.changePage('#recipeList');
