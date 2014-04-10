@@ -40,7 +40,9 @@ function searchRecipes() {
 	var apiURL = "http://api.yummly.com/v1/api/recipes?_app_id=b8a751c0&_app_key=007d17e544de591f7b7bc27ad695f2cd&q="
 	var queryString = apiURL + foods + callback;
             
-	$.getJSON(queryString, function(data){
+	$.getJSON(queryString, function(data){   
+        updateSearch(); // possibly unnecessary - if performance becomes an issue we can try to get rid of this
+        
 		var recipes = "";
         
         // check for no recipes
