@@ -161,7 +161,7 @@ a:focus {
 
 @media(min-width:767px) {
     .intro {
-        height: 100%;
+        height: auto;
         padding: 0;
     }
 
