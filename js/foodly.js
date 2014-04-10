@@ -42,9 +42,17 @@ function searchRecipes() {
             
 	$.getJSON(queryString, function(data){
 		var recipes = "";
+        
+        // check for no recipes
+        if(!data){
+            alert("No recipes found. Try unchecking some ingredients.");
+        }
+        
 		for(var i = 0; i < 10; i++){
-			recipes += (data.matches[i].recipeName + "\n");
-			recipeList.push(data.matches[i].recipeName);
+            if(data.matches[i]) { //check for undefined
+                recipes += (data.matches[i].recipeName + "\n");
+                recipeList.push(data.matches[i].recipeName);
+            }
 		}
 		$.mobile.changePage('#recipeList');
 	});
