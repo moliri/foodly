@@ -76,6 +76,23 @@ function addCheckbox(name) {
 		$('<br />').appendTo(container);
 	}
 }
+    
+// makes an API call when users click on individual recipes from the recipe list screen
+// recipeID should be a string (although js will probably stringify it)
+function getRecipeURL(recipeID) {
+    var APIBase = "http://api.yummly.com/v1/api/recipe/";
+    var appID = "?_app_id=b8a751c0&";
+    var appKey = "_app_key=007d17e544de591f7b7bc27ad695f2cd&q=";
+    var callback = "&callback=?";
+    var queryURL = APIBase + recipeID + appID + appKey + callback;
+    
+    $.getJSON(queryString, function(data){
+        if(data && data.source){
+            return data.source.sourceRecipeUrl;
+        }
+    });
+}
+
 				
 function updateSearch() {
 	var len = $('#cblist').length;
