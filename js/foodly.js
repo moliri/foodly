@@ -44,17 +44,23 @@ function searchRecipes() {
 		var recipes = "";
         
         // check for no recipes
-        if(!data){
-            alert("No recipes found. Try unchecking some ingredients.");
+        var recipesOK = false;
+        if(!data || !data.matches || (data.matches.length === 0)){
+            alert("No recipes found. Please try unchecking some ingredients.");
+        }
+        else {
+            recipesOK = true;
         }
         
-		for(var i = 0; i < 10; i++){
-            if(data.matches[i]) { //check for undefined
-                recipes += (data.matches[i].recipeName + "\n");
-                recipeList.push(data.matches[i].recipeName);
+        if(recipesOK){
+            for(var i = 0; i < 10; i++){
+                if(data.matches[i]) { //check for undefined
+                    recipes += (data.matches[i].recipeName + "\n");
+                    recipeList.push(data.matches[i].recipeName);
+                }
             }
-		}
-		$.mobile.changePage('#recipeList');
+            $.mobile.changePage('#recipeList');
+        }
 	});
 }
 
