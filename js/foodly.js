@@ -43,7 +43,7 @@ function searchRecipes() {
 	$.getJSON(queryString, function(data){   
         updateSearch(); // possibly unnecessary - if performance becomes an issue we can try to get rid of this
         
-		var recipes = "";       
+		var recipes = "";
         // check for no recipes
         var recipesOK = false;
         if(!data || !data.matches || (data.matches.length === 0)){
@@ -57,7 +57,7 @@ function searchRecipes() {
             for(var i = 0; i < 10; i++){
                 if(data.matches[i]) { //check for undefined
                     recipes += (data.matches[i].recipeName + "\n");
-                    recipeList.push(data.matches[i].recipeName);
+                    recipeList.push(data.matches[i]);
                 }
             }
             $.mobile.changePage('#recipeList');
@@ -83,6 +83,23 @@ function addCheckbox(name) {
 		$('<br />').appendTo(container);
 	}
 }
+    
+// makes an API call when users click on individual recipes from the recipe list screen
+// recipeID should be a string (although js will probably stringify it)
+function getRecipeURL(recipeID) {
+    var APIBase = "http://api.yummly.com/v1/api/recipe/";
+    var appID = "?_app_id=b8a751c0&";
+    var appKey = "_app_key=007d17e544de591f7b7bc27ad695f2cd&q=";
+    var callback = "&callback=?";
+    var queryURL = APIBase + recipeID + appID + appKey + callback;
+    
+    $.getJSON(queryString, function(data){
+        if(data && data.source){
+            return data.source.sourceRecipeUrl;
+        }
+    });
+}
+
 				
 function updateSearch() {
 	var len = $('#cblist').length;
