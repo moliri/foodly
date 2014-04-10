@@ -44,12 +44,17 @@ function searchRecipes() {
 		var recipes = "";
 		for(var i = 0; i < 10; i++){
 			recipes += (data.matches[i].recipeName + "\n");
-			recipeList.push(data.matches[i].recipeName);
+			recipeList.push(data.matches[i]);
 		}
 		$.mobile.changePage('#recipeList');
 	});
 }
 
+/* 
+recipeName 
+smallImageUrls
+ingredients
+*/
 
 
 function addCheckbox(name) {
@@ -85,8 +90,15 @@ $(document).on('pageinit', '#recipeList', populateRecipeList);
 
 function populateRecipeList() {
 	$('#recipes .recipeList li').remove();
-	$.each(recipeList, function(index, userName) {
-		$('#recipes .recipeList').append('<li><a href="#">'+userName+'</a></li>');
+	$.each(recipeList, function(index, obj) {
+		var picUrl;
+		if (obj.smallImageUrls.length !== 0) {
+			picUrl = obj.smallImageUrls[0]; 
+		} else {
+			picUrl = "img/not_available.jpg";
+		}
+		var recipeName =  obj.recipeName;
+		$('#recipes .recipeList').append('<li><a href="#"><img src="'+ picUrl +'"><h2>'+ recipeName+'</h2></a></li>');
   	});
   	$('#recipes .recipeList').listview("refresh");
 }
