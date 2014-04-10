@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <meta charset="utf-8">
@@ -18,111 +18,26 @@
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-    <!-- Custom Theme CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
-    <script src="js/jquery-1.10.2.js"></script>
-    <script language="javascript">
-        
-        var TEST = "";
-        //takes a javascript array of ingredients right now (may need to change for interface requirements?)
-        //returns the API search term string
-        function getIngredients(ingredients) {
-            var str = "";
-            for(var i = 0; i < ingredients.length - 1; i++){
-                var withplus = ingredients[i] + "+";
-                str += withplus;
-            }
-            str += ingredients[ingredients.length - 1];
-            return str;
-        }
-        
-        //registering callbacks
-        $(document).ready(function () {$("#searchButton").click(searchRecipes)});
-		
-        
-        function searchRecipes() {
-			var ingreds = updateSearch();
-            var foods = getIngredients(ingreds);
-            var apiURL = "http://api.yummly.com/v1/api/recipes?"
-			var id = "b8a751c0";
-			var key = "007d17e544de591f7b7bc27ad695f2cd";
-			var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
-			var callback = "&callback=?"
-            var queryString = apiURL + requestInfo + foods + callback;
-			
-			$(function() {	
-				$.ajax(queryString, 
-				{
-					statusCode: {
-					409: function() {
-						id = "2daedd08"
-						key = "9660aeb80292c3128c93bd8e904e1490"
-						alert('An API Call error occured, please try again.');
-						}
-					}
-				});
-			});
-		
-			
-            
-            $.getJSON(queryString, function(data){
-                TEST = data;
-                var recipes = "";
-                for(var i = 0; i < 10; i++){
-                    recipes += (data.matches[i].recipeName + "\n");
-                }
-                alert(recipes);
-               
-            });
-            
-        }
-    
-    </script>
+    <!-- jQuery/jQuery Mobile/jQuery Mobile CSS -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link href="css/foodly.css" rel="stylesheet">
 
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+    <script src="js/foodly.js"></script>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body>
 
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">Try</span> Foodly
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Follow</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <section class="intro">
-        <div class="intro-body">
+    <div data-role="page" id="intropage" class="intro"> 
+        <div data-role="content" class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Foodly</h1>
                         <p class="intro-text">Your pantry, your food.</p>
                         <div class="page-scroll">
-                            <a href="#foodly" class="btn btn-circle">
+                            <a id="startbtn" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
                             </a>
                         </div>
@@ -130,10 +45,13 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div data-role="page" id="temp"> 
+    </div>
 	
-	<section id="foodly" class="content-section text-center">
-        <div class="download-section">
+	<div data-role="page" id="search"> 
+        <div data-role="content" class="pantry">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
 				
@@ -143,94 +61,24 @@
 				<div id="cblist">
 				</div>
 
-				<script type="text/javascript">
-				$(document).ready(function() {
-					$('#btnSave').click(function() {
-						addCheckbox($('#newItem').val());
-                        $('#newItem').val('');
-						updateSearch();
-					});
-				});
-
-				function addCheckbox(name) {
-                    if(name !== ""){
-                       var container = $('#cblist');
-                       var inputs = container.find('input');
-                       //alert(inputs);
-                       var id = inputs.length+1;
-                       
-                       
-
-                       $('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked" }).appendTo(container);
-                       $('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
-                       $('<br />').appendTo(container);
-                   }
-                   
-				}
-				
-				function updateSearch() {
-					//var len = $('#cblist').length;
-                    var len = 20;
-                    //alert(len);
-					var myIngredients=[];
-					for (var i=0; i<=len; i++) {
-						var isChecked = $('#cb'+i).is(':checked');
-						if (isChecked)
-                         {
-							myIngredients.push($('#cb'+i).next("label").text());
-                        }
-                    }
-						//else {
-						//<!--	updateSearch(); -->
-						//}
-					return myIngredients;
-					
-				}
-				
-				</script>
-				
 				<br />
-				<a id="searchButton" class="btn btn-default btn-lg">find recipes</a>
+				<a id="searchButton" class="btn btn-default btn-lg">Find Recipes</a>
                 
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="about" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <p>Foodly is a mobile web app for kitchen owners that allows the user to input all groceries and ingredients as inventory and generates a list of online recipes that can be made.</p>
-                <p>Created by Dylan Hirshkowitz, Leesha Maliakal, Zachariah Straight, Haodong Wang, Peiying Zhou, and Daniel Zuo.</p>
-                <p>Information about the Yummly API can be found <a href = "http://developer.yummly.com">here.</a></p>
-            </div>
+    <div data-role="page" id="recipeList">
+        <div data-role="header"> 
+            <h1>Recipe List</h1> 
+         </div> 
+        <div data-role="content" id="recipes">
+            <ul data-role="listview" data-inset="true" class="recipeList">
+            </ul>
         </div>
-    </section>
-
-    <section id="contact" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Follow Foodly</h2>
-                <ul class="list-inline banner-social-buttons">                  
-                    <li><a href="https://github.com/moliri/foodly" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div id="map"></div>
-
-    <!-- Core JavaScript Files -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Google Maps API Key -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPIDoeK7FMh5LGYCbbguzC_-XJXHholwY&sensor=true"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/grayscale.js"></script>
-
+        <div data-role="footer"> 
+            <h4>Page Footer</h4> 
+        </div> 
+    </div>
 </body>
-
 </html>
