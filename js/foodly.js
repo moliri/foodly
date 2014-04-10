@@ -36,9 +36,28 @@ function getIngredients(ingredients) {
 function searchRecipes() {
 	var ingreds = updateSearch();
 	var foods = getIngredients(ingreds);
+	var apiURL = "http://api.yummly.com/v1/api/recipes?"
+	var id = "b8a751c0";
+	var key = "007d17e544de591f7b7bc27ad695f2cd";
+	var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
 	var callback = "&callback=?"
-	var apiURL = "http://api.yummly.com/v1/api/recipes?_app_id=b8a751c0&_app_key=007d17e544de591f7b7bc27ad695f2cd&q="
-	var queryString = apiURL + foods + callback;
+	var queryString = apiURL + requestInfo + foods + callback;
+	
+	$(function() {	
+	/*looks like we can't use ajax because it doesn't use cross origin domain requests - looking into it*/
+		$.ajax(queryString, 
+		{
+			statusCode: {
+			409: function() {
+				alert(queryString);
+				alert(statusCode);
+				id = "2daedd08"
+				key = "9660aeb80292c3128c93bd8e904e1490"
+				alert('An API Call error occured, please try again.');
+				}
+			}
+		});
+	});
             
 	$.getJSON(queryString, function(data){   
         updateSearch(); // possibly unnecessary - if performance becomes an issue we can try to get rid of this
