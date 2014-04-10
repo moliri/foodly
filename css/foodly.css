@@ -248,9 +248,12 @@ a:focus {
     }
 }
 
-.content-section {
+.content {
     height: auto;
 	padding-top: 100px;
+	text-align: center;
+	color: #fff;
+	background-color: #000;
 }
 
 .pantry {
@@ -259,6 +262,7 @@ a:focus {
 	height: auto;
     padding: 100px 0;
     color: #fff;
+	text-align: center;
     background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
@@ -274,8 +278,8 @@ a:focus {
 }
 
 @media(min-width:767px) {
-    .content-section {
-        padding-top: 325px;
+    .content {
+        padding-top: 100px;
     }
 
     .download-section {
