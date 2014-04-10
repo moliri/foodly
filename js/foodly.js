@@ -65,13 +65,6 @@ function searchRecipes() {
 	});
 }
 
-/* 
-recipeName 
-smallImageUrls
-ingredients
-*/
-
-
 function addCheckbox(name) {
 	if(name !== ""){
 		var container = $('#cblist');
