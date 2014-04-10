@@ -37,8 +37,8 @@ function searchRecipes() {
 	var ingreds = updateSearch();
 	var foods = getIngredients(ingreds);
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
-	var id = "b8a751c0";
-	var key = "007d17e544de591f7b7bc27ad695f2cd";
+	var id = "2daedd08";
+	var key = "9660aeb80292c3128c93bd8e904e1490";
 	var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
 	var callback = "&callback=?"
 	var queryString = apiURL + requestInfo + foods + callback;

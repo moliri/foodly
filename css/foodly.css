@@ -161,8 +161,9 @@ a:focus {
 
 @media(min-width:767px) {
     .intro {
-        height: 200%;
+        height: 100%;
         padding: 0;
+		background-size: 100%
     }
 
     .brand-heading {
@@ -281,10 +282,12 @@ a:focus {
 @media(min-width:767px) {
     .content {
         padding-top: 50px;
+		background-size: 100%
     }
 
-    .download-section {
+    .pantry {
         padding: 100px 0;
+		background-size: 100%
     }
 
     #map {
@@ -305,15 +308,15 @@ a:focus {
     transition: all .3s ease-in-out;
 }
 
-.ui-btn-default {
+.btn-default {
     border: 1px solid #a60000;
     color: #ffffff;
     background-color: #a60000;
 	opacity: 0.6
 }
 
-.ui-btn-default:hover,
-.ui-btn-default:focus {
+.btn-default:hover,
+.btn-default:focus {
     border: 1px solid #a60000;
     outline: 0;
     color: #ffffff;
@@ -321,7 +324,7 @@ a:focus {
 	opacity: 1.0
 }
 
-.ui-btn-huge {
+.btn-huge {
     padding: 25px;
     font-size: 26px;
 }
