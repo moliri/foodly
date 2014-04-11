@@ -39,7 +39,7 @@ p {
 }
 
 a {
-    color: #a60000;
+    color: #ff831c;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -125,7 +125,6 @@ a:focus {
     display: table;
     width: 100%;
     height: auto;
-    /* padding: 100px 0; */
     text-align: center;
     color: #fff;
 	background: url(../img/intro-bg.jpg) no-repeat center scroll;
@@ -255,7 +254,7 @@ a:focus {
     height: auto;
 	padding-top: 100px;
 	text-align: center;
-	color: #fff;
+	color: #ff831c;
 	background-color: #000;
 }
 
@@ -264,7 +263,7 @@ a:focus {
     width: 100%;
 	height: auto;
     padding: 100px 0;
-    color: #fff;
+    color: #ff831c;
 	text-align: center;
     background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
     background-color: #000;
@@ -301,9 +300,9 @@ a:focus {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 800;
-	border: 1px solid #a60000;
+	border: 1px solid #ff831c;
     color: #ffffff;
-    background-color: #a60000;
+    background-color: #ff831c;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
@@ -313,9 +312,9 @@ a:focus {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 800;
-	border: 1px solid #a60000;
+	border: 1px solid #ff831c;
     color: #ffffff;
-    background-color: #a60000;
+    background-color: #ff831c;
     -webkit-animation-name: pulse;
     -moz-animation-name: pulse;
     -webkit-animation-duration: 1.5s;
@@ -327,18 +326,18 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #a60000;
+    border: 1px solid #ff831c;
     color: #ffffff;
-    background-color: #a60000;
+    background-color: #ff831c;
 	opacity: 0.6
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #a60000;
+    border: 1px solid #ff831c;
     outline: 0;
     color: #ffffff;
-    background-color: #a60000;
+    background-color: #ff831c;
 	opacity: 1.0
 }
 
