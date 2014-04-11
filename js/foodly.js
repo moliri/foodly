@@ -116,7 +116,7 @@ function getRecipeURL(recipeID) {
 				
 function updateSearch() {
 	
-    var len = $('#cblist').children().length; // divide by 3 since the size of each child is 3.
+    var len = $('#cblist').children().length; 
     
 	var myIngredients=[];
 		for (var i=0; i<=len; i++) {
