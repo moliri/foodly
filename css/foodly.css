@@ -309,6 +309,19 @@ a:focus {
     transition: all .3s ease-in-out;
 }
 
+#startbtn{
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 800;
+	border: 1px solid #a60000;
+    color: #ffffff;
+    background-color: #a60000;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+	
+}
+
 .btn-default {
     border: 1px solid #a60000;
     color: #ffffff;
