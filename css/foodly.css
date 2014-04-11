@@ -120,12 +120,12 @@ a:focus {
     }
 }
 
-/*
+
 .intro {
     display: table;
     width: 100%;
     height: auto;
-    padding: 100px 0;
+    /* padding: 100px 0; */
     text-align: center;
     color: #fff;
 	background: url(../img/intro-bg.jpg) no-repeat center scroll;
@@ -136,7 +136,7 @@ a:focus {
     background-size: cover;
     -o-background-size: cover;
 }
-*/
+
 
 /*.intro-body {
 	background: url(../img/intro-bg.jpg) no-repeat center scroll;
