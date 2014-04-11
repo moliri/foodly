@@ -48,6 +48,7 @@ function searchRecipes() {
 	/*looks like we can't use ajax because it doesn't use cross origin domain requests - looking into it*/
 		$.ajax(queryString, 
 		{
+            dataType : 'jsonp',
 			statusCode: {
 			409: function() {
 				alert(queryString);
