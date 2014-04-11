@@ -34,7 +34,8 @@ function getIngredients(ingredients) {
 /* need to take care of undefined case */
 
 function searchRecipes() {
-	var ingreds = updateSearch();
+	var ingreds = updateSearch();   
+    
 	var foods = getIngredients(ingreds);
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
 	var id = "2daedd08";
@@ -114,7 +115,9 @@ function getRecipeURL(recipeID) {
 
 				
 function updateSearch() {
-	var len = $('#cblist').length;
+	
+    var len = $('#cblist').children().size() / 3; // divide by 3 since the size of each child is 3.
+    
 	var myIngredients=[];
 		for (var i=0; i<=len; i++) {
 			var isChecked = $('#cb'+i).is(':checked');
