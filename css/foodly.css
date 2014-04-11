@@ -121,7 +121,7 @@ a:focus {
 }
 
 
-.intro {
+.intro .ui-panel-wrapper {
     display: table;
     width: 100%;
     height: auto;
