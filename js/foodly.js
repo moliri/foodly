@@ -93,8 +93,9 @@ function searchRecipes() {
 		var recipes = "";
         // check for no recipes
         var recipesOK = false;
+
         if(!data || !data.matches || (data.matches.length === 0)){
-            alert("No recipes found. Please try unchecking some ingredients.");
+            alert("No recipes found. Is your pantry empty? Otherwise, try selecting fewer items.");
         }
         else {
             recipesOK = true;
@@ -117,11 +118,12 @@ function addCheckbox(name) {
 		var container = $('#cblist');
 		var inputs = container.find('input');
 		var id = inputs.length+1;
-                       
-    	$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked" }).appendTo(container);
+
+		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
 		$('<br />').appendTo(container);
 	}
+	
 }
     
 // makes an API call when users click on individual recipes from the recipe list screen
@@ -156,7 +158,7 @@ function updateSearch() {
 			}
 		}
 		return myIngredients;
-	}
+}
 
 
 /* starting script for recipe list page */
