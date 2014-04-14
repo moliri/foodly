@@ -19,6 +19,33 @@ $(document).on('pageinit','#search',function() {
 /* global array to store the recipes */
 var recipeList = [];
 
+/* global object to store API keys & related logic*/
+var yummlyAPIKeys = {
+    _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
+    _keyArray : ["9660aeb80292c3128c93bd8e904e1490","007d17e544de591f7b7bc27ad695f2cd"],
+    _idArray : ["2daedd08","b8a751c0"],
+    
+    // get the key currently in use
+    getApiKey : function () {
+        return this._keyArray[this._keyIndex];  
+    },
+    
+    // get the id currently in use
+    getId : function () {
+        return this._idArray[this._keyIndex];
+    },
+    
+    // cycle through api keys
+    changeKey : function () {
+        if(_keyIndex >= _keyArray.length){
+            this._keyIndex = 0;
+        }
+        else {
+            this._keyIndex++;
+        }    
+    } 
+};
+
 //takes a javascript array of ingredients right now (may need to change for interface requirements?)
 //returns the API search term string
 function getIngredients(ingredients) {
@@ -38,14 +65,14 @@ function searchRecipes() {
     
 	var foods = getIngredients(ingreds);
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
-	var id = "2daedd08";
-	var key = "9660aeb80292c3128c93bd8e904e1490";
+	var id = yummlyAPIKeys.getId();
+	var key = yummlyAPIKeys.getApiKey();
 	var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
 	var callback = "&callback=?"
 	var queryString = apiURL + requestInfo + foods + callback;
 	
 	$(function() {	
-	/*looks like we can't use ajax because it doesn't use cross origin domain requests - looking into it*/
+        // Handle case where we are out of API calls...
 		$.ajax(queryString, 
 		{
             dataType : 'jsonp',
@@ -53,9 +80,8 @@ function searchRecipes() {
 			409: function() {
 				alert(queryString);
 				alert(statusCode);
-				id = "2daedd08"
-				key = "9660aeb80292c3128c93bd8e904e1490"
 				alert('An API Call error occured, please try again.');
+                yummlyAPIKeys.changeKey(); // toggle the api keys
 				}
 			}
 		});
@@ -102,8 +128,8 @@ function addCheckbox(name) {
 // recipeID should be a string (although js will probably stringify it)
 function getRecipeURL(recipeID) {
     var APIBase = "http://api.yummly.com/v1/api/recipe/";
-    var appID = "?_app_id=b8a751c0&";
-    var appKey = "_app_key=007d17e544de591f7b7bc27ad695f2cd&q=";
+    var appID = "?_app_id=" + yummlyApiKeys.getId() + "&";
+    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
     var callback = "&callback=?";
     var queryURL = APIBase + recipeID + appID + appKey + callback;
     
