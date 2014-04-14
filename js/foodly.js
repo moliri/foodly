@@ -14,7 +14,19 @@ $(document).on('pageinit','#search',function() {
 						$('#newItem').val('');
 						updateSearch();
 					});
+                    
+    $('#newItem').bind('keypress', function (e) {
+        if(e.keyCode === 13){
+            
+            addCheckbox($('#newItem').val());
+			$('#newItem').val('');
+			updateSearch();
+        }
+    });
 });
+
+
+
 
 /* global array to store the recipes */
 var recipeList = [];
