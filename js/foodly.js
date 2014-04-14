@@ -25,6 +25,11 @@ var yummlyAPIKeys = {
     _keyArray : ["9660aeb80292c3128c93bd8e904e1490","007d17e544de591f7b7bc27ad695f2cd"],
     _idArray : ["2daedd08","b8a751c0"],
     
+    // get the request string to be appended to the search base url
+    getRequestString : function (searchParams) {
+        return "_app_id=" + this.getId() + "&_app_key=" + this.getApiKey() + "&q=" + searchParams + "&callback=?";
+    },
+    
     // get the key currently in use
     getApiKey : function () {
         return this._keyArray[this._keyIndex];  
@@ -65,11 +70,7 @@ function searchRecipes() {
     
 	var foods = getIngredients(ingreds);
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
-	var id = yummlyAPIKeys.getId();
-	var key = yummlyAPIKeys.getApiKey();
-	var requestInfo = "_app_id=" + id + "&_app_key=" + key + "&q=";
-	var callback = "&callback=?"
-	var queryString = apiURL + requestInfo + foods + callback;
+	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods);
 	
 	$(function() {	
         // Handle case where we are out of API calls...
@@ -130,7 +131,7 @@ function addCheckbox(name) {
 // recipeID should be a string (although js will probably stringify it)
 function getRecipeURL(recipeID) {
     var APIBase = "http://api.yummly.com/v1/api/recipe/";
-    var appID = "?_app_id=" + yummlyApiKeys.getId() + "&";
+    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
     var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
     var callback = "&callback=?";
     var queryURL = APIBase + recipeID + appID + appKey + callback;
