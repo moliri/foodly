@@ -1,6 +1,11 @@
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
 	$('#startbtn').click(function(){   
+		window.addEventListener("load",function() {
+    setTimeout(function(){
+        window.scrollTo(0, 1);
+    }, 0);
+});
 		$.mobile.changePage('#search');  
         return false;   
         });  
@@ -8,6 +13,11 @@ $(document).on('pageinit', '#intropage', function(){
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
+	window.addEventListener("load",function() {
+    setTimeout(function(){
+        window.scrollTo(0, 1);
+    }, 0);
+});
 	$("#searchButton").click(searchRecipes);
 	$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
@@ -31,7 +41,7 @@ $(document).on('pageinit','#search',function() {
 /* global array to store the recipes */
 var recipeList = [];
 
-/* global object to store API keys & related logic*/
+/* global object to store API keys & related logic */
 var yummlyAPIKeys = {
     _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
     _keyArray : ["9660aeb80292c3128c93bd8e904e1490","007d17e544de591f7b7bc27ad695f2cd"],
