@@ -256,8 +256,29 @@ a:focus {
     }
 }
 
+#contact, #about {
+	height: 100%
+}
+
+#search {
+	display: table;
+    width: 100%;
+	height: 100%;
+    padding: 100px 0;
+    color: #ff831c;
+	text-align: center;
+	text-shadow: #47D1D1;
+    background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
+    background-color: #000;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+
 .content {
-    height: auto;
+    height: 100%;
 	padding-top: 100px;
 	text-align: center;
 	color: #fff;
@@ -265,19 +286,7 @@ a:focus {
 }
 
 .pantry {
-	display: table;
-    width: 100%;
-	height: auto;
-    padding: 100px 0;
-    color: #ff831c;
-	text-align: center;
-	text-shadow: #47D1D1;
-    background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+	
 }
 
 #map {
