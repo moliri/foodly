@@ -148,6 +148,11 @@ a:focus {
 
 .ui-panel-wrapper {
     background: url(../img/intro-bg.jpg) no-repeat center scroll;
+    vertical-align: middle;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .brand-heading {
