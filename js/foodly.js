@@ -14,7 +14,6 @@ $(document).on('pageinit','#search',function() {
 						$('#newItem').val('');
 						updateSearch();
 					});
-                    
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
             
