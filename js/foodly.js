@@ -28,7 +28,7 @@ $(document).on('pageinit','#search',function() {
 
 /* global array to store the recipes */
 var recipeList = [];
-var recipeObjList = [];
+var recipeObjList = new Array(10);
 
 /* global object to store API keys & related logic */
 var yummlyAPIKeys = {
@@ -142,33 +142,13 @@ function addCheckbox(name) {
 var temp_url = new Array(10);
 
 /* recipe class */
-function recipe() {
-	this.recipeName = '';
-	this.id = '';
-	this.picURL = '';
-	this.recipeURL = '';
+function recipe(recipeName, recipeID, picURL, recipeURL) {
+	this.recipeName = recipeName;
+	this.id = recipeID;
+	this.picURL = picURL;
+	this.recipeURL = recipeURL;
 }
 
-// makes an API call when users click on individual recipes from the recipe list screen
-// recipeID should be a string (although js will probably stringify it)
-function getRecipeURL(recipeID, index, picURL, recipeName) {
-    var APIBase = "http://api.yummly.com/v1/api/recipe/";
-    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
-    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
-    var callback = "&callback=?";
-    var queryURL = APIBase + recipeID + appID + appKey + callback;
-    
-    $.getJSON(queryURL, function(data){
-        if(data && data.source){
-            recipeObjList[index].recipeURL = data.source.sourceRecipeUrl;
-            temp_url[index] = data.source.sourceRecipeUrl;
-            $('#recipes .recipeList').append('<li><a href="'+ data.source.sourceRecipeUrl +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
-            $('#recipes .recipeList').listview("refresh");
-        }
-    });
-}
-
-				
 function updateSearch() {
 	
     var len = $('#cblist').children().length; 
@@ -205,19 +185,29 @@ function createList()  {
 }
 
 function populateRecipeList() {
-	$('#recipes .recipeList li').remove();
+	var APIBase = "http://api.yummly.com/v1/api/recipe/";
+    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
+    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
+    var callback = "&callback=?";
+    //$('#recipes .recipeList li').remove(); //clear the currrent list, may not be necessary
 	$.each(recipeList, function(index, obj) {
-		var picUrl;
+		var picURL;
 		if (obj.smallImageUrls.length !== 0) {
-			picUrl = obj.smallImageUrls[0]; 
+			picURL = obj.smallImageUrls[0]; 
 		} else {
-			picUrl = "img/not_available.jpg";
+			picURL = "img/not_available.jpg";
 		}
-		recipeObjList.push(new recipe()); 
-		recipeObjList[index].recipeName =  obj.recipeName;
-		recipeObjList[index].id = obj.id;
-		recipeObjList[index].picURL = picUrl;
-		getRecipeURL(obj.id, index, picUrl, obj.recipeName);
+		var recipeName =  obj.recipeName;
+		var recipeID = obj.id;
+    	var queryURL = APIBase + recipeID + appID + appKey + callback;
+    	$.getJSON(queryURL, function(data){
+        	if(data && data.source){
+            	var recipeURL = data.source.sourceRecipeUrl;
+            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
+           	 	$('#recipes .recipeList').listview("refresh");
+        	}
+        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
+    	});	
   	});
-  	return 0;
+  	return;
 }
