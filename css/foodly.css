@@ -441,3 +441,8 @@ body {
         -moz-transform: translate3d(10em,0,0);
         transform: translate3d(10em,0,0);
 }
+
+/* panel list font size change */
+ul.panelList li a{
+     font-size: 0.75em;
+}

@@ -33,15 +33,12 @@
     <div data-role="page" id="intropage" class="intro"> 
         
         <div data-role="panel" id="introPanel" data-theme="b">
-            <div class="links">
-			<a href=""> My Pantry </a>
-			<br /><br />
-            <a href=""> About Foodly </a>
-			<br /><br />
-			<a href=""> Follow Foodly </a>
-			<br /><br />
+            <ul data-role="listview" class="panelList">
+			     <li><a href="#search"> My Pantry </a></li>
+                 <li><a href="#about"> About Foodly </a></li>
+			     <li><a href="#contact"> Follow Foodly </a></li>
+            </ul>
         </div>
-        </div> 
         <div data-role="header">
             <a href="#introPanel" data-icon="bars">Menu</a>
             <h1> Foodly </h1>
@@ -89,7 +86,7 @@
             <h1>Recipe List</h1> 
          </div> 
         <div data-role="content" id="recipes">
-            <ul data-role="listview" data-inset="true" class="recipeList">
+            <ul data-role="listview" class="recipeList">
             </ul>
         </div>
         <div data-role="footer"> 
