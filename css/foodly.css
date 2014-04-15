@@ -142,14 +142,12 @@ a:focus {
 	text-transform: uppercase;
 }
 
-.intro-body {   
+.intro-body {
     vertical-align: middle;
 }
 
 .ui-panel-wrapper {
     background: url(../img/intro-bg.jpg) no-repeat center scroll;
-    background-repeat: repeat-x;
-    background-position: left bottom;
 }
 
 .brand-heading {
