@@ -250,6 +250,19 @@ a:focus {
 }
 
 #search {
+	
+}
+
+
+.content {
+    height: 100%;
+	padding-top: 100px;
+	text-align: center;
+	color: #fff;
+	background-color: #47D1D1;
+}
+
+.pantry {
 	display: table;
     width: 100%;
 	height: auto;
@@ -263,19 +276,6 @@ a:focus {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-}
-
-
-.content {
-    height: 100%;
-	padding-top: 100px;
-	text-align: center;
-	color: #fff;
-	background-color: #47D1D1;
-}
-
-.pantry {
-	
 }
 
 #map {
