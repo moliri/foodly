@@ -230,14 +230,19 @@ function populateRecipeList() {
 		}
 
         
-		recipeObjList.push(new recipe()); 
-		recipeObjList[index].recipeName =  obj.recipeName;
-		recipeObjList[index].id = obj.id;
-		recipeObjList[index].picURL = picUrl;
-		getRecipeURL(obj.id, index, picUrl, obj.recipeName);
-
+		var recipeName =  obj.recipeName;
+		var recipeID = obj.id;
+    	var queryURL = APIBase + recipeID + appID + appKey + callback;
+    	$.getJSON(queryURL, function(data){
+        	if(data && data.source){
+            	var recipeURL = data.source.sourceRecipeUrl;
+            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
+           	 	$('#recipes .recipeList').listview("refresh");
+        	}
+        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
+    	});	
   	});
-  	return 0;
+  	return;
 }
 
 
