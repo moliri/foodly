@@ -25,6 +25,18 @@ $(document).on('pageinit','#search',function() {
 });
 
 
+// Handling browser back button
+$(window).on("navigate", function (event, data) {
+  var direction = data.state.direction;
+  
+  if (direction === 'back') {
+    updateSearch();
+    // alert('back button pressed!');
+  }
+  
+});
+
+
 /* global array to store the recipes */
 var recipeList = [];
 var recipeObjList = new Array(10);
