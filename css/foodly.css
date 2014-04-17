@@ -381,6 +381,23 @@ a:focus {
 	opacity: 1.0
 }
 
+.btn-add {
+	border: 1px solid #ff831c;
+    outline: 0;
+    color: #ffffff;
+    background-color: #ff831c;
+	opacity: 0.9
+}
+
+.btn-add:hover,
+.btn-add:focus {
+    border: 1px solid #ff831c;
+    outline: 0;
+    color: #ffffff;
+    background-color: #ff831c;
+	opacity: 1.0
+}
+
 .btn-huge {
     padding: 25px;
     font-size: 26px;
