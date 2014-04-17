@@ -123,8 +123,14 @@ a:focus {
 }
 
 
-.intro {
-    
+.ui-li-desc {
+    font-size: 12px;
+    font-weight: normal;
+    display: block;
+    margin: -.5em 0 .6em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
 }
 
 #introPanel {

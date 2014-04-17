@@ -178,7 +178,7 @@ function createList()  {
 	for (var i=0; i<len ;i++)
 	{ 
 		console.log();
-		$('#recipes .recipeList').append('<li><a href="'+ recipeObjList[i].recipeURL+'"><img src="'+ recipeObjList[i].picURL +'"><h2>'+ recipeObjList[i].recipeName+'</h2></a></li>');
+		$('#recipes .recipeList').append('<li><a href="'+ recipeObjList[i].recipeURL+'"><img src="'+ recipeObjList[i].picURL +'"><h4>'+ recipeObjList[i].recipeName+'</h4></a></li>');
 	}
 	$('#recipes .recipeList').listview("refresh");
 }
@@ -202,7 +202,7 @@ function populateRecipeList() {
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
             	var recipeURL = data.source.sourceRecipeUrl;
-            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
+            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img style="height:100%" src="'+ picURL +'"><p style="font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
         	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
