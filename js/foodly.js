@@ -30,12 +30,11 @@ $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   
   if (direction === 'back') {
-    updateSearch();
-    // alert('back button pressed!');
+    recipeList = [];
+    $('#recipes .recipeList').empty();
   }
   
 });
-
 
 /* global array to store the recipes */
 var recipeList = [];
@@ -91,6 +90,7 @@ function searchRecipes() {
 	var ingreds = updateSearch();   
     
 	var foods = getIngredients(ingreds);
+    
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
 	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods);
 	
@@ -158,26 +158,7 @@ function recipe() {
         this.picURL = '';
         this.recipeURL = '';
 }   
-// makes an API call when users click on individual recipes from the recipe list screen
-// recipeID should be a string (although js will probably stringify it)
-function getRecipeURL(recipeID, index, picURL, recipeName) {
-    var APIBase = "http://api.yummly.com/v1/api/recipe/";
-    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
-    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
-    var callback = "&callback=?";
-    var queryURL = APIBase + recipeID + appID + appKey + callback;
-    
-    $.getJSON(queryString, function(data){
-        if(data && data.source){
-        
-            recipeObjList[index].recipeURL = data.source.sourceRecipeUrl;
-            temp_url[index] = data.source.sourceRecipeUrl;
-            $('#recipes .recipeList').append('<li><a href="'+ data.source.sourceRecipeUrl +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
-            $('#recipes .recipeList').listview("refresh");
 
-        }
-    });
-}
 
 				
 
@@ -208,7 +189,8 @@ function updateSearch() {
 
 
 /* starting script for recipe list page */
-$(document).on('pageinit', '#recipeList', populateRecipeList);
+$(document).on('pagebeforeshow', '#recipeList', populateRecipeList);
+
 	
 function createList()  {
 	var len = recipeObjList.length;
