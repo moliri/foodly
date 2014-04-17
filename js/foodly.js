@@ -140,7 +140,6 @@ function addCheckbox(name) {
 var temp_url = new Array(10);
    
 /* recipe class */
-<<<<<<< HEAD
 function recipe() {
         this.recipeName = '';
         this.id = '';
@@ -169,7 +168,7 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
 }
 
 				
-=======
+
 function recipe(recipeName, recipeID, picURL, recipeURL) {
 	this.recipeName = recipeName;
 	this.id = recipeID;
@@ -177,7 +176,7 @@ function recipe(recipeName, recipeID, picURL, recipeURL) {
 	this.recipeURL = recipeURL;
 }
 
->>>>>>> 77ede4a270fc29197bc0aa2d067f3a8872e1ce4b
+
 function updateSearch() {
 	
     var len = $('#cblist').children().length; 
@@ -229,7 +228,7 @@ function populateRecipeList() {
 		} else {
 			picURL = "img/not_available.jpg";
 		}
-<<<<<<< HEAD
+
         
 		recipeObjList.push(new recipe()); 
 		recipeObjList[index].recipeName =  obj.recipeName;
@@ -242,7 +241,7 @@ function populateRecipeList() {
 }
 
 
-=======
+
 		var recipeName =  obj.recipeName;
 		var recipeID = obj.id;
     	var queryURL = APIBase + recipeID + appID + appKey + callback;
@@ -257,4 +256,4 @@ function populateRecipeList() {
   	});
   	return;
 }
->>>>>>> 77ede4a270fc29197bc0aa2d067f3a8872e1ce4b
+
