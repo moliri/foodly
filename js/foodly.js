@@ -137,18 +137,16 @@ function addCheckbox(name) {
 	}
 	
 }
-    
 
 var temp_url = new Array(10);
-
+   
 /* recipe class */
 function recipe() {
-	this.recipeName = '';
-	this.id = '';
-	this.picURL = '';
-	this.recipeURL = '';
-}
-
+        this.recipeName = '';
+        this.id = '';
+        this.picURL = '';
+        this.recipeURL = '';
+}   
 // makes an API call when users click on individual recipes from the recipe list screen
 // recipeID should be a string (although js will probably stringify it)
 function getRecipeURL(recipeID, index, picURL, recipeName) {
@@ -158,12 +156,14 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
     var callback = "&callback=?";
     var queryURL = APIBase + recipeID + appID + appKey + callback;
     
-    $.getJSON(queryURL, function(data){
+    $.getJSON(queryString, function(data){
         if(data && data.source){
+        
             recipeObjList[index].recipeURL = data.source.sourceRecipeUrl;
             temp_url[index] = data.source.sourceRecipeUrl;
             $('#recipes .recipeList').append('<li><a href="'+ data.source.sourceRecipeUrl +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
             $('#recipes .recipeList').listview("refresh");
+
         }
     });
 }
@@ -187,22 +187,25 @@ function updateSearch() {
 }
 
 
-
 /* starting script for recipe list page */
-$(document).on('pageinit', '#recipeList', function() {
-	populateRecipeList();
-	//createList();
-});
+$(document).on('pageinit', '#recipeList', populateRecipeList);
 
+$(document).on('pageinit', '#recipeList', function() {
+		populateRecipeList();
+		//createList();
+});
+	
 function createList()  {
 	var len = recipeObjList.length;
-	for (var i=0; i<len ;i++)
-	{ 
-		console.log();
-		$('#recipes .recipeList').append('<li><a href="'+ recipeObjList[i].recipeURL+'"><img src="'+ recipeObjList[i].picURL +'"><h2>'+ recipeObjList[i].recipeName+'</h2></a></li>');
-	}
-	$('#recipes .recipeList').listview("refresh");
+    for (var i=0; i<len ;i++)
+    { 
+        console.log();
+        $('#recipes .recipeList').append('<li><a href="'+ recipeObjList[i].recipeURL+'"><img src="'+ recipeObjList[i].picURL +'"><h2>'+ recipeObjList[i].recipeName+'</h2></a></li>');
+    }
+    $('#recipes .recipeList').listview("refresh");
 }
+
+
 
 function populateRecipeList() {
 	$('#recipes .recipeList li').remove();
@@ -213,11 +216,15 @@ function populateRecipeList() {
 		} else {
 			picUrl = "img/not_available.jpg";
 		}
+        
 		recipeObjList.push(new recipe()); 
 		recipeObjList[index].recipeName =  obj.recipeName;
 		recipeObjList[index].id = obj.id;
 		recipeObjList[index].picURL = picUrl;
 		getRecipeURL(obj.id, index, picUrl, obj.recipeName);
+
   	});
   	return 0;
 }
+
+
