@@ -65,10 +65,13 @@
         <div data-role="content" class="pantry">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
-				<input id = "newItem" placeholder=" Add a pantry item... " type="text" />
-                <a id="btnSave" class="btn btn-default btn-lg"> + </a>
-                <br />
-                <br />
+				<div id="addItem" class="input-group">
+				<input id = "newItem" class="form-control" placeholder=" Add a pantry item... " type="text" >
+					<span class="input-group-btn">
+						<a id="btnSave" class="btn btn-default"> + </a>
+					</span>
+                </div>
+				<br />
 				<div id="cblist">
 					
 				</div>
