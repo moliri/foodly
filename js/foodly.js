@@ -157,16 +157,20 @@ function recipe() {
         this.id = '';
         this.picURL = '';
         this.recipeURL = '';
+        this.ingredientLines = '';
+        this.totalTimeInSeconds = '';
+        this.numberOfServings = '';
 }   
 
-
-				
-
-function recipe(recipeName, recipeID, picURL, recipeURL) {
+function recipe(recipeName, recipeID, picURL, recipeURL, 
+                ingredientLines, totalTimeInSeconds, numberOfServings) {
 	this.recipeName = recipeName;
 	this.id = recipeID;
 	this.picURL = picURL;
 	this.recipeURL = recipeURL;
+    this.ingredientLines = ingredientLines;
+    this.totalTimeInSeconds = totalTimeInSeconds;
+    this.numberOfServings = numberOfServings;
 }
 
 
@@ -225,10 +229,13 @@ function populateRecipeList() {
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
             	var recipeURL = data.source.sourceRecipeUrl;
+                var ingredientLines = data.ingredientLines;
+                var totalTimeInSeconds = data.totalTimeInSeconds;
+                var numberOfServings = data.numberOfServings;
             	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
-        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
+        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings);
     	});	
   	});
   	return;
