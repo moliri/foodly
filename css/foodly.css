@@ -432,6 +432,12 @@ body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
 
+.ui-listview>.ui-li-has-thumb>.ui-btn, .ui-listview>.ui-li-static.ui-li-has-thumb {
+    min-height: 3.625em; 
+    max-height: 3em;  
+    padding-left: 6em;
+}
+
 /* Adjust the width of the left reveal menu. */
 .ui-panel {
     width: 10em;

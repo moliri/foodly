@@ -197,11 +197,6 @@ function updateSearch() {
 
 /* starting script for recipe list page */
 $(document).on('pageinit', '#recipeList', populateRecipeList);
-
-$(document).on('pageinit', '#recipeList', function() {
-		populateRecipeList();
-		//createList();
-});
 	
 function createList()  {
 	var len = recipeObjList.length;
@@ -236,7 +231,7 @@ function populateRecipeList() {
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
             	var recipeURL = data.source.sourceRecipeUrl;
-            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img style="height:100%" src="'+ picURL +'"><p style="font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
+            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
         	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
