@@ -224,6 +224,9 @@ $(document).on('pageinit', '#recipeItem', function () {
 	var obj = recipeObjList[clickedIndex];
 	$('#recipeTitle').text(obj.recipeName);
 	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
+	$('#favorite').click(function () {
+		
+	})
 })
 
 /*
