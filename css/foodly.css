@@ -338,6 +338,13 @@ a:focus {
 	
 }
 
+#btnDelete {
+	font-weight: 5000;
+	color: #ffffff;
+    background-color: #ff831c;
+	
+}
+
 #cblist {
 	background-color: #47D1D1;
 	color: #ffffff;

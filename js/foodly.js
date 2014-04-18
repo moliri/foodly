@@ -153,6 +153,9 @@ function addCheckbox(name) {
 
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
+		$('<span class="input-group-btn">').appendTo(container);
+		$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
+		$('</span>').appendTo(container);
 		$('<br />').appendTo(container);
 	}
 	
