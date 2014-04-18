@@ -24,6 +24,15 @@ $(document).on('pageinit','#search',function() {
     });
 });
 
+//Link to individual recipe page from recipelist
+$(document).on('pageinit','#recipeList',function(){
+	$('#recipeBtn').click(function(){
+			$.mobile.changePage('#recipe');
+	
+		
+	});
+});
+
 
 // Handling browser back button
 $(window).on("navigate", function (event, data) {
