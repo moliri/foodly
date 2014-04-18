@@ -348,6 +348,16 @@ a:focus {
 	
 }
 
+#recipe{
+	color: #ffffff;
+	background-color: #47D1D1;
+	
+}
+#recipehead{
+	color: #ffffff;
+	background-color: #ff831c;
+}
+
 #startbtn{
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
