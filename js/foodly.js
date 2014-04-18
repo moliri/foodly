@@ -1,6 +1,11 @@
+/* user id */
+var user_id;
+var clickedIndex;
+
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
-	$('#startbtn').click(function(){   
+	$('#startbtn').click(function(){ 
+		user_id = $('#userID').val();
 		$.mobile.changePage('#search');  
         return false;   
         });  
@@ -24,7 +29,6 @@ $(document).on('pageinit','#search',function() {
     });
 });
 
-
 // Handling browser back button
 $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
@@ -39,7 +43,7 @@ $(window).on("navigate", function (event, data) {
 
 /* global array to store the recipes */
 var recipeList = [];
-var recipeObjList = new Array(10);
+var recipeObjList = new Array();
 
 /* global object to store API keys & related logic */
 var yummlyAPIKeys = {
@@ -148,8 +152,6 @@ function addCheckbox(name) {
 	}
 	
 }
-
-var temp_url = new Array(10);
    
 /* recipe class */
 function recipe() {
@@ -157,7 +159,23 @@ function recipe() {
         this.id = '';
         this.picURL = '';
         this.recipeURL = '';
+        this.ingredientLines = '';
+        this.totalTimeInSeconds = '';
+        this.numberOfServings = '';
 }   
+
+				
+
+function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings) {
+	this.recipeName = recipeName;
+	this.id = recipeID;
+	this.picURL = picURL;
+	this.recipeURL = recipeURL;
+	this.ingredientLines = ingredientLines;
+    this.totalTimeInSeconds = totalTimeInSeconds;
+    this.numberOfServings = numberOfServings;
+}
+
 // makes an API call when users click on individual recipes from the recipe list screen
 // recipeID should be a string (although js will probably stringify it)
 function getRecipeURL(recipeID, index, picURL, recipeName) {
@@ -179,16 +197,6 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
     });
 }
 
-				
-
-function recipe(recipeName, recipeID, picURL, recipeURL) {
-	this.recipeName = recipeName;
-	this.id = recipeID;
-	this.picURL = picURL;
-	this.recipeURL = recipeURL;
-}
-
-
 function updateSearch() {
 	
     var len = $('#cblist').children().length; 
@@ -208,8 +216,18 @@ function updateSearch() {
 
 
 /* starting script for recipe list page */
-$(document).on('pageinit', '#recipeList', populateRecipeList);
+$(document).on('pageinit', '#recipeList', function () {
+		clickedIndex = -1;
+		populateRecipeList();
+})
+
+$(document).on('pageinit', '#recipeItem', function () {
+	var obj = recipeObjList[clickedIndex];
+	$('#recipeTitle').text(obj.recipeName);
+	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
+})
 	
+/*
 function createList()  {
 	var len = recipeObjList.length;
 	for (var i=0; i<len ;i++)
@@ -219,7 +237,7 @@ function createList()  {
 	}
 	$('#recipes .recipeList').listview("refresh");
 }
-
+*/
 
 
 function populateRecipeList() {
@@ -242,17 +260,34 @@ function populateRecipeList() {
     	var queryURL = APIBase + recipeID + appID + appKey + callback;
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
+        		var ingredientLines = data.ingredientLines;
+                var totalTimeInSeconds = data.totalTimeInSeconds;
+                var numberOfServings = data.numberOfServings;
             	var recipeURL = data.source.sourceRecipeUrl;
-            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
+            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
-        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL);
+        	recipeObjList.push(new recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings));
     	});	
   	});
   	return;
 }
 
+function GetIndex(sender)
+{   
+    var aElements = sender.parentNode.parentNode.getElementsByTagName("a");
+    var aElementsLength = aElements.length;
 
+    var index;
+    for (var i = 0; i < aElementsLength; i++)
+    {
+        if (aElements[i] === sender) //this condition is never true
+        {
+            clickedIndex = i;
+            return clickedIndex;
+        }
+    }
+}
 
 		
 
