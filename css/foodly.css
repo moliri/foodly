@@ -473,6 +473,11 @@ body {
     width: 0;
 }
 
+.ui-btn{
+	color: #ffffff;
+	background-color: #ff831c;
+}
+
 .ui-panel-page-content-position-left,
 .ui-panel-dismiss-open.ui-panel-dismiss-position-left {
         left: 10em;
