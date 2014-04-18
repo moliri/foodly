@@ -34,12 +34,11 @@ $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   
   if (direction === 'back') {
-    updateSearch();
-    // alert('back button pressed!');
+    recipeList = [];
+    $('#recipes .recipeList').empty();
   }
   
 });
-
 
 /* global array to store the recipes */
 var recipeList = [];
@@ -95,6 +94,7 @@ function searchRecipes() {
 	var ingreds = updateSearch();   
     
 	var foods = getIngredients(ingreds);
+    
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
 	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods);
 	
@@ -164,8 +164,6 @@ function recipe() {
         this.numberOfServings = '';
 }   
 
-				
-
 function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings) {
 	this.recipeName = recipeName;
 	this.id = recipeID;
@@ -197,6 +195,7 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
     });
 }
 
+
 function updateSearch() {
 	
     var len = $('#cblist').children().length; 
@@ -226,7 +225,7 @@ $(document).on('pageinit', '#recipeItem', function () {
 	$('#recipeTitle').text(obj.recipeName);
 	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
 })
-	
+
 /*
 function createList()  {
 	var len = recipeObjList.length;
