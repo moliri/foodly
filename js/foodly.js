@@ -8,6 +8,10 @@ $(document).on('pageinit', '#intropage', function(){
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
+	var container = $('#cblist');
+	var inputs = container.find('input');
+	var id = inputs.length+1;
+	$('<h6> Time to fill up your pantry! </h6>').appendTo(container);
 	$("#searchButton").click(searchRecipes);
 	$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
@@ -146,11 +150,15 @@ function searchRecipes() {
 }
 
 function addCheckbox(name) {
+	
+	$('#cblist').empty();
+	var container = $('#cblist');
+	var inputs = container.find('input');
+	var id = inputs.length+1;
+	if (container == "") {
+			$('<p> Your pantry is empty! Add some items before finding recipes. </p>').appendTo(container);
+		}
 	if(name !== ""){
-		var container = $('#cblist');
-		var inputs = container.find('input');
-		var id = inputs.length+1;
-
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
 		$('<span class="input-group-btn">').appendTo(container);
