@@ -28,8 +28,10 @@
       <script>
     function showresult(){
     var userID ='103';
-    promise = backendGetRecipe(userID);
-    alert(promise[0].attributes.recpiName);
+    var promise = backendGetRecipe(userID);
+    promise.done(function() {
+        alert(promise[0].attributes.recipeName);
+    });
 }
         </script>
     </body>

@@ -8,7 +8,7 @@ function backendAddRecipe(userID,recipeID,recipeName) {
 
     RecipeTable.set("userID", userID);
     RecipeTable.set("recipeID", recipeID);
-    RecipeTable.set("recipeName",recipeName);
+    RecipeTable.set("recipeName", recipeName);
      
     RecipeTable.save(null, {
       success: function(RecipeTable) {
@@ -45,7 +45,7 @@ function backendGetRecipe(userID){
           }
     });
     
-  return list;
+  return query;
 }
 
 
