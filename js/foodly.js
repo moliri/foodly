@@ -13,7 +13,9 @@ $(document).on('pageinit', '#intropage', function(){
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
-	$("#searchButton").click(searchRecipes);
+	$("#searchButton").click(function () {
+        searchRecipes(populateRecipeList);
+    });
 	$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
 						$('#newItem').val('');
@@ -106,7 +108,7 @@ function getIngredients(ingredients) {
         
 /* need to take care of undefined case */
 
-function searchRecipes() {
+function searchRecipes(callback) {
     recipeList = [];
 
 	var ingreds = updateSearch();   
@@ -162,6 +164,7 @@ function searchRecipes() {
                 }
             }
             //alert(recipeList);
+            callback();
             $.mobile.changePage('#recipeList');
         }
 	});
@@ -284,6 +287,7 @@ function createList()  {
 
 
 function populateRecipeList() {
+    recipeObjList = [];
 	var APIBase = "http://api.yummly.com/v1/api/recipe/";
     var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
     var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
