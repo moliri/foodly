@@ -14,6 +14,7 @@ $(document).on('pageinit', '#intropage', function(){
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
 	$("#searchButton").click(function () {
+        $('#recipes .recipeList').empty();
         searchRecipes(populateRecipeList);
     });
 	$('#btnSave').click(function() {
@@ -29,7 +30,7 @@ $(document).on('pageinit','#search',function() {
         }
     });
     $('#favList').click(function() {
-    	data = backendGetRecipe(user_id, fillRecipeListArr);    
+    	data = backendGetRecipe(user_id, fillRecipeListArr);  
         $.mobile.changePage('#recipeList');
     });
 });
@@ -55,6 +56,7 @@ $(window).on("navigate", function (event, data) {
     var page = $.mobile.activePage;
     
     if(page.is('#recipeItem')){
+        $('#recipes .recipeList').empty();
         populateRecipeList();
     }
     
@@ -270,17 +272,23 @@ function updateSearch() {
 /* starting script for recipe list page */
 $(document).on('pageinit', '#recipeList', function () {
 		clickedIndex = -1;
-		populateRecipeList();
+        $('#recipes .recipeList .listItem').click(updateRecipeItem);
+
 })
 
-$(document).on('pageinit', '#recipeItem', function () {
-	var obj = recipeObjList[clickedIndex];
-	$('#recipeTitle').text(obj.recipeName);
-	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
-	$('#favorite').click(function () {
-		backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
-	});
-});
+$(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
+
+function updateRecipeItem() {
+    var obj = recipeObjList[clickedIndex];
+    alert("in update " + clickedIndex);
+    $('#recipeTitle').text(obj.recipeName);
+    $('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
+    $('#favorite').click(function () {
+        backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
+    });
+}
+
+
 
 /*
 function createList()  {
