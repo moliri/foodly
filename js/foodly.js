@@ -18,10 +18,14 @@ $(document).on('pageinit','#search',function() {
 						$('#newItem').val('');
 						updateSearch();
 					});
+	$('#btnDelete').click(function() {
+						deleteCheckbox($('#newItem').val());
+						updateSearch();
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
             
             addCheckbox($('#newItem').val());
+			deleteCheckbox($('#newItem').val());
 			$('#newItem').val('');
 			updateSearch();
         }
@@ -155,9 +159,6 @@ function addCheckbox(name) {
 	var container = $('#cblist');
 	var inputs = container.find('input');
 	var id = inputs.length+1;
-	if (container == "") {
-			$('<p> Your pantry is empty! Add some items before finding recipes. </p>').appendTo(container);
-		}
 	if(name !== ""){
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
@@ -166,6 +167,18 @@ function addCheckbox(name) {
 		$('</span>').appendTo(container);
 		$('<br />').appendTo(container);
 	}
+	
+}
+
+function deleteCheckbox(name) {
+	var container = $('#cblist');
+	var inputs = container.find('input');
+	var id = inputs.length+1;
+	
+	//need help implementing this
+	
+	//$('#cblist').remove(element);
+	
 	
 }
 
