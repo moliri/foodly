@@ -1,7 +1,7 @@
 
 Parse.initialize("p3WFau7rwXnsUVQKNOhSbuztub7D8fe4q2unlAm9", "lWi3UcUdbfQRF9P9H1oF1idIW6LhUq7dFXck5RM1");
 
-function backendAddRecipe(userID,recipeID,recipeName) {
+function backendAddRecipe(userID,recipeID,recipeName, picURL) {
                 
     var table = Parse.Object.extend("Recipe");
     var RecipeTable = new table();
@@ -9,7 +9,8 @@ function backendAddRecipe(userID,recipeID,recipeName) {
     RecipeTable.set("userID", userID);
     RecipeTable.set("recipeID", recipeID);
     RecipeTable.set("recipeName",recipeName);
-     
+    RecipeTable.set("picURL", picURL); 
+
     RecipeTable.save(null, {
       success: function(RecipeTable) {
         // Execute any logic that should take place after the object is saved.
@@ -22,7 +23,7 @@ function backendAddRecipe(userID,recipeID,recipeName) {
     });
 }
 
-function backendGetRecipe(userID){
+function backendGetRecipe(userID, callback){
     var list = [];
 	var table = Parse.Object.extend("Recipe");
 	var query = new Parse.Query(table);
@@ -37,6 +38,7 @@ function backendGetRecipe(userID){
             }
             
             console.log(list);
+            callback(list, populateRecipeList);
             return list;
           },
           

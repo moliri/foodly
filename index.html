@@ -23,6 +23,11 @@
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+
+    <!-- Parse files -->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script type="text/JavaScript" src="js/parse.js"></script>
+
     <link href="css/foodly.css" rel="stylesheet">
     <script src="js/foodly.js"></script>
 </head>
@@ -31,18 +36,7 @@
 
 	<!-- Intro Page -->
     <div data-role="page" id="intropage" class="intro"> 
-        
-        <div data-role="panel" id="introPanel" data-theme="b">
-            <ul data-role="listview" class="panelList">
-			     <li><a href="#search"> My Pantry </a></li>
-                 <li><a href="#about"> About Foodly </a></li>
-			     <li><a href="#contact"> Follow Foodly </a></li>
-            </ul>
-        </div>
-        <div data-role="header">
-            <a href="#introPanel" data-icon="bars">Menu</a>
-            <h1> Foodly </h1>
-        </div>
+
         <div data-role="content" class="intro-body">
             <div class="container">
                 <div class="row">
@@ -64,6 +58,21 @@
 
 	<!-- Pantry Page -->
 	<div data-role="page" id="search"> 
+
+        <div data-role="panel" id="introPanel" data-theme="b">
+            <ul data-role="listview" class="panelList">
+                 <li><a href="#search"> My Pantry </a></li>
+                 <li><a href="#about"> About Foodly </a></li>
+                 <li><a href="#contact"> Follow Foodly </a></li>
+                 <li><a href="" id="favList"> My Favorites</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <a href="#introPanel" data-icon="bars">Menu</a>
+            <h1> Foodly </h1>
+        </div>
+
         <div data-role="content" class="pantry">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
@@ -138,7 +147,12 @@
             <a href="#" id="favorite" class="ui-btn ui-icon-heart ui-btn-icon-notext ui-corner-all">No text</a>
         </div>
     </div>
-	
+
+    <div data-role="page" id="testing">
+        <div data-role="content" class="testing-content">
+            This page is for testing.
+        </div>
+    </div>
 	
 </body>
 </html>

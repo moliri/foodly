@@ -145,8 +145,19 @@ a:focus {
 	text-transform: uppercase;
 }
 
-.intro-body {
+.intro{
     vertical-align: middle;
+    background: url(../img/intro-bg.jpg) no-repeat center scroll;
+    background-color: #47D1D1;
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.intro-body {
+    margin-top: 4em !important;
 }
 
 .ui-panel-wrapper {
@@ -284,12 +295,6 @@ a:focus {
     color: #fff;
 	text-align: center;
 	text-shadow: #47D1D1;
-    background: url(../img/downloads-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
 }
 
 #map {

@@ -8,7 +8,7 @@ $(document).on('pageinit', '#intropage', function(){
 		user_id = $('#userID').val();
 		$.mobile.changePage('#search');  
         return false;   
-        });  
+        }); 
 });
 
 /* starting script for pantry page */
@@ -27,7 +27,23 @@ $(document).on('pageinit','#search',function() {
 			updateSearch();
         }
     });
+    $('#favList').click(function() {
+    	data = backendGetRecipe(user_id, fillRecipeListArr);    
+        $.mobile.changePage('#recipeList');
+    });
 });
+
+function fillRecipeListArr(data, callback) {
+        recipeList = [];   
+        $.each(data, function (index, obj) {
+            var name = obj.attributes.recipeName;
+            var id = obj.attributes.recipeID;
+            var picURL = obj.attributes.picURL;
+            recipeList.push(new prelim_recipe(name, id, picURL));
+        });
+        callback();
+        return;
+}
 
 // Handling browser back button
 $(window).on("navigate", function (event, data) {
@@ -41,7 +57,7 @@ $(window).on("navigate", function (event, data) {
 });
 
 /* global array to store the recipes */
-var recipeList = [];
+var recipeList = new Array();
 var recipeObjList = new Array();
 
 /* global object to store API keys & related logic */
@@ -91,6 +107,8 @@ function getIngredients(ingredients) {
 /* need to take care of undefined case */
 
 function searchRecipes() {
+    recipeList = [];
+
 	var ingreds = updateSearch();   
     
 	var foods = getIngredients(ingreds);
@@ -131,10 +149,19 @@ function searchRecipes() {
         if(recipesOK){
             for(var i = 0; i < 10; i++){
                 if(data.matches[i]) { //check for undefined
-                    recipes += (data.matches[i].recipeName + "\n");
-                    recipeList.push(data.matches[i]);
+                    var obj = data.matches[i];
+                    var recipeName = data.matches[i].recipeName;
+                    var id = data.matches[i].id;
+                    var picURL;
+                    if (obj.smallImageUrls.length !== 0) {
+                        picURL = obj.smallImageUrls[0]; 
+                    } else {
+                        picURL = "img/not_available.jpg";
+                    }
+                    recipeList.push(new prelim_recipe(recipeName, id, picURL));
                 }
             }
+            //alert(recipeList);
             $.mobile.changePage('#recipeList');
         }
 	});
@@ -164,14 +191,28 @@ function recipe() {
         this.numberOfServings = '';
 }   
 
+
 function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings) {
-	this.recipeName = recipeName;
-	this.id = recipeID;
-	this.picURL = picURL;
-	this.recipeURL = recipeURL;
-	this.ingredientLines = ingredientLines;
+    this.recipeName = recipeName;
+    this.id = recipeID;
+    this.picURL = picURL;
+    this.recipeURL = recipeURL;
+    this.ingredientLines = ingredientLines;
     this.totalTimeInSeconds = totalTimeInSeconds;
     this.numberOfServings = numberOfServings;
+}
+
+/* preliminary recipe class */
+function prelim_recipe() {
+    this.recipeName = '';
+    this.id = '';
+    this.picURL = '';
+}
+
+function prelim_recipe(recipeName, recipeID, picURL) {
+    this.recipeName = recipeName;
+    this.id = recipeID;
+    this.picURL = picURL;
 }
 
 // makes an API call when users click on individual recipes from the recipe list screen
@@ -225,7 +266,7 @@ $(document).on('pageinit', '#recipeItem', function () {
 	$('#recipeTitle').text(obj.recipeName);
 	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
 	$('#favorite').click(function () {
-		
+		backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
 	})
 })
 
@@ -249,14 +290,7 @@ function populateRecipeList() {
     var callback = "&callback=?";
     //$('#recipes .recipeList li').remove(); //clear the currrent list, may not be necessary
 	$.each(recipeList, function(index, obj) {
-		var picURL;
-		if (obj.smallImageUrls.length !== 0) {
-			picURL = obj.smallImageUrls[0]; 
-		} else {
-			picURL = "img/not_available.jpg";
-		}
-
-        
+		var picURL = obj.picURL;   
 		var recipeName =  obj.recipeName;
 		var recipeID = obj.id;
     	var queryURL = APIBase + recipeID + appID + appKey + callback;
@@ -290,6 +324,3 @@ function GetIndex(sender)
         }
     }
 }
-
-		
-
