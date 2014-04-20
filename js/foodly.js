@@ -21,6 +21,7 @@ $(document).on('pageinit','#search',function() {
 	$('#btnDelete').click(function() {
 						deleteCheckbox($('#newItem').val());
 						updateSearch();
+					});	
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
             
