@@ -23,7 +23,6 @@ $(document).on('pageinit','#search',function() {
 					});
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
-            
             addCheckbox($('#newItem').val());
 			$('#newItem').val('');
 			updateSearch();
@@ -48,12 +47,22 @@ function fillRecipeListArr(data, callback) {
 }
 
 // Handling browser back button
+
 $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   
   if (direction === 'back') {
-    recipeList = [];
-    $('#recipes .recipeList').empty();
+    var page = $.mobile.activePage;
+    
+    if(page.is('#recipeItem')){
+        populateRecipeList();
+    }
+    
+    if(page.is('#recipeList')){
+        recipeList = [];
+        $('#recipes .recipeList').empty();
+    }
+    
   }
   
 });
@@ -270,8 +279,8 @@ $(document).on('pageinit', '#recipeItem', function () {
 	$('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
 	$('#favorite').click(function () {
 		backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
-	})
-})
+	});
+});
 
 /*
 function createList()  {
