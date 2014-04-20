@@ -8,14 +8,10 @@ function backendAddRecipe(userID,recipeID,recipeName, picURL) {
 
     RecipeTable.set("userID", userID);
     RecipeTable.set("recipeID", recipeID);
-<<<<<<< HEAD
-    RecipeTable.set("recipeName", recipeName);
-     
-=======
     RecipeTable.set("recipeName",recipeName);
     RecipeTable.set("picURL", picURL); 
 
->>>>>>> 6616f7f546259935c88a716eb5f7544c49529dc5
+
     RecipeTable.save(null, {
       success: function(RecipeTable) {
         // Execute any logic that should take place after the object is saved.
