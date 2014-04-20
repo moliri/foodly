@@ -11,6 +11,7 @@ function backendAddRecipe(userID,recipeID,recipeName, picURL) {
     RecipeTable.set("recipeName",recipeName);
     RecipeTable.set("picURL", picURL); 
 
+
     RecipeTable.save(null, {
       success: function(RecipeTable) {
         // Execute any logic that should take place after the object is saved.
@@ -47,7 +48,7 @@ function backendGetRecipe(userID, callback){
           }
     });
     
-  return list;
+  return query;
 }
 
 
