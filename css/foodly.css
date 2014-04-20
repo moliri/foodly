@@ -279,6 +279,19 @@ a:focus {
 }
 
 
+#wrap{
+    text-align: center;
+}
+
+#foodPic{
+    max-width: 100%;
+}
+
+#recipehead{
+    color: #47D1D1;
+    background-color: #fff;
+}
+
 .content {
     height: 100%;
 	padding-top: 100px;
