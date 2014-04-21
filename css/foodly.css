@@ -143,6 +143,8 @@ a:focus {
 
 #introPanel {
 	text-transform: uppercase;
+	color: #47D1D1;
+	background-color: #fff;
 }
 
 .intro-body {
