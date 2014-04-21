@@ -375,11 +375,20 @@ label {
 	background: #FFF;
 }
 
-#recipe{
-	color: #ffffff;
-	background-color: #47D1D1;
-	
+
+#wrap{
+    text-align: center;
 }
+
+#foodPic{
+    max-width: 100%;
+}
+
+#recipehead{
+    color: #47D1D1;
+    background-color: #fff;
+}
+
 #recipehead{
 	color: #ffffff;
 	background-color: #ff831c;
