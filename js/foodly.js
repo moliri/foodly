@@ -17,7 +17,7 @@ $(document).on('pageinit','#search',function() {
 						updateSearch();
 					});
 	$('#btnDelete').click(function() {
-						deleteCheckbox($('#newItem').val());
+						deleteCheckbox($('cb1').val());
 						updateSearch();
 					});	
     $('#newItem').bind('keypress', function (e) {
@@ -172,9 +172,7 @@ function addCheckbox(name) {
 }
 
 function deleteCheckbox(name) {
-	var container = $('#cblist');
-	var inputs = container.find('input');
-	var id = inputs.length+1;
+    $('#cblist').remove('cb1');
 	
 	//need help implementing this
 	
