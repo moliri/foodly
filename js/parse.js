@@ -51,4 +51,44 @@ function backendGetRecipe(userID, callback){
   return query;
 }
 
+function backendAddPantry(userID,Item) {
+                
+    var table = Parse.Object.extend("Pantry");
+    var PantryTable = new table();
+
+    PantryTable.set("userID", userID);
+    PantryTable.set("Item", Item);
+   
+    PantryTable.save(null, {
+      success: function(PantryTable) {
+        // Execute any logic that should take place after the object is saved.
+        alert('New object created with objectId: ' + PantryTable.id);
+      },
+      error: function(PantryTable, error) {
+        
+        alert('Failed to create new object, with error code: ' + error.description);
+      }
+    });
+}
+
+function backendDeletePantry(userID,Item){
+
+  var table = Parse.Object.extend("Pantry");
+  var query = new Parse.Query(table);
+  query.equalTo("userID", userID);
+  query.equalTo("Item",Item);
+  query.find({
+        success: function(results) {
+            // Do something with the returned Parse.Object values
+            results[0].destroy({
+              success: function(results){alert("delete success")},
+              error: function(results){}
+            });
+          },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+          }
+    });
+return query;
+}
 

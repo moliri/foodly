@@ -1,6 +1,7 @@
 /* user id */
 var user_id;
 var clickedIndex;
+var temp;
 
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
@@ -203,10 +204,11 @@ function recipe() {
         this.ingredientLines = '';
         this.totalTimeInSeconds = '';
         this.numberOfServings = '';
+        this.largePicURL = '';
 }   
 
 
-function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings) {
+function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings, largePicURL) {
     this.recipeName = recipeName;
     this.id = recipeID;
     this.picURL = picURL;
@@ -214,6 +216,7 @@ function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalT
     this.ingredientLines = ingredientLines;
     this.totalTimeInSeconds = totalTimeInSeconds;
     this.numberOfServings = numberOfServings;
+    this.largePicURL = largePicURL;
 }
 
 /* preliminary recipe class */
@@ -231,6 +234,7 @@ function prelim_recipe(recipeName, recipeID, picURL) {
 
 // makes an API call when users click on individual recipes from the recipe list screen
 // recipeID should be a string (although js will probably stringify it)
+/*
 function getRecipeURL(recipeID, index, picURL, recipeName) {
     var APIBase = "http://api.yummly.com/v1/api/recipe/";
     var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
@@ -249,7 +253,7 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
         }
     });
 }
-
+*/
 
 function updateSearch() {
 	
@@ -280,12 +284,20 @@ $(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
 
 function updateRecipeItem() {
     var obj = recipeObjList[clickedIndex];
-    alert("in update " + clickedIndex);
-    $('#recipeTitle').text(obj.recipeName);
-    $('#recipeItem .test').append(recipeObjList[clickedIndex].ingredientLines);
+    $('#recipeTitle').text(obj.name);
+    $('#picURL').attr("src", obj.images[0].hostedLargeUrl);
+    $('#numberOfServings').text(obj.numberOfServings);
+    $('#timeOfPrep').text(obj.totalTimeInSeconds/60 + " minutes");
+        
+    var ingredients = recipeObjList[clickedIndex].ingredientLines
+    for (var i = 0; i < ingredients.length; i++) {
+        $('#recipeItem .ingredientList').append("<li>"+ ingredients[i] + "</li>"); 
+    }
+    $('#recipeItem .ingredientList').listview("refresh");
     $('#favorite').click(function () {
         backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
     });
+    $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
 }
 
 
@@ -317,6 +329,8 @@ function populateRecipeList() {
     	var queryURL = APIBase + recipeID + appID + appKey + callback;
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
+                temp = data;
+                //alert(temp);
         		var ingredientLines = data.ingredientLines;
                 var totalTimeInSeconds = data.totalTimeInSeconds;
                 var numberOfServings = data.numberOfServings;
@@ -324,7 +338,7 @@ function populateRecipeList() {
             	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
-        	recipeObjList.push(new recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings));
+        	recipeObjList.push(data);
     	});	
   	});
   	return;

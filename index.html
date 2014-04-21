@@ -137,61 +137,36 @@
 			</div>
         </div>
     </div>
-
-    <!-- Recipe Item Page -->
+    
+    <!-- Recipe Item Test Page -->
     <div data-role="page" id="recipeItem">
         <div data-role="header" id="recipehead"> 
             <h1 id="recipeTitle" style="white-space: normal !important"> </h1>
         </div>
         <div data-role="content" class="test" id="recipe">
-            <a href="#" id="favorite" class="ui-btn ui-icon-heart ui-btn-icon-notext ui-corner-all">No text</a>
-        </div>
-    </div>
-
-    <div data-role="page" id="testing">
-        <div data-role="content" class="testing-content">
-            This page is for testing.
-        </div>
-    </div>
-    
-        <!-- Recipe Item Test Page -->
-    <div data-role="page" id="recipeItem2">
-        <div data-role="header" id="recipehead"> 
-            <h1 id="recipeTitle" style="white-space: normal !important"> BACON DIPPED IN CHOCOLATE</h1>
-        </div>
-        <div data-role="content" class="test" id="recipe">
-            <img src="http://www.the-girl-who-ate-everything.com/wp-content/uploads/blogger/-xHU27NVeNhI/T2fzLHXxANI/AAAAAAAAIVA/YVjec-Gevfk/s1600/chocolate-dipped-bacon-dipping.JPG" alt="Recipe Item" id="foodPic">
-            <div id="wrap">
-                <a href="#" id="favorite" class="ui-btn ui-icon-heart ui-btn-icon-notext ui-corner-all">No text</a>
-            </div>
+            <img src="" id="picURL" style="width: 290px; height:auto;">
 
             <div>
-                <h3>Basic Info</h3>
-                <ul>Servings: 1</ul>
-                <ul>Prep time: 10 Min, Total time: 52 Days &nbsp; &nbsp;</ul>
-            </div>
+                <h3 style="margin-top: 1em;">Basic Info</h3>
+                <ul data-role="listview">
+                    <li> <span style="margin-right: 5em; float: left; width: 20px;"> <b>Servings:</b> </span> <span id="numberOfServings"></span> </li>
+                    <li> <span style="margin-right: 5em; float: left; width: 20px;"> <b>Prep Time:</b> </span> <span id="timeOfPrep"></span> </li>
+                </ul>
 
-            <div>
-                <h3>Ingredients</h3>
-                <ul>
-                    <li>
-                        <span> 12 slices </span>
-                        <strong> Delicious delicious bacon</strong>
-                    </li>
-                    <li>
-                        <span> 1 lb </span>
-                        <strong> OMG is that nutella?? </strong>
-                    </li>
-                    <li>
-                        <span> 1 handle </span>
-                        <strong> Jack Daniel's Tennessee Honey Whiskey </strong>
-                    </li>
+                <div style="margin-top: 2.5em;">
+                    <a href="" id="favorite" data-role="button" data-icon="heart" data-theme="a">Favorite</a>
+                    <a href="" id="fullRecipeLink" data-role="button" data-icon="info" data-theme="a">Full Recipe</a>
+                </div>
+
+                <h3 style="margin-top: 1em;">Ingredients</h3>
+                <ul data-role="listview" class="ingredientList"> 
                 </ul>
             </div>
 
         </div>
     </div>
 
+    <!-- testing page -->
     <div data-role="page" id="testing">
         <div data-role="content" class="testing-content">
             This page is for testing.
