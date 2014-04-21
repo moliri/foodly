@@ -302,7 +302,7 @@ function updateRecipeItem() {
     }
     $('#recipeItem .ingredientList').listview("refresh");
     $('#favorite').click(function () {
-        backendAddRecipe(user_id, obj.id, obj.recipeName, obj.picURL);
+        backendAddRecipe(user_id, obj.id, obj.name, obj.images[0].hostedSmallUrl);
     });
     $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
 }
@@ -342,7 +342,7 @@ function populateRecipeList() {
                 var totalTimeInSeconds = data.totalTimeInSeconds;
                 var numberOfServings = data.numberOfServings;
             	var recipeURL = data.source.sourceRecipeUrl;
-            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
+            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'" style="width:auto;height:auto;"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
         	recipeObjList.push(data);
