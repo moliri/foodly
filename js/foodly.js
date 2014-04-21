@@ -33,6 +33,7 @@ $(document).on('pageinit','#search',function() {
     	data = backendGetRecipe(user_id, fillRecipeListArr);  
         $.mobile.changePage('#recipeList');
     });
+    loadPantry(user_id,fillPantryList);
 });
 
 function fillRecipeListArr(data, callback) {
@@ -45,6 +46,12 @@ function fillRecipeListArr(data, callback) {
         });
         callback();
         return;
+}
+
+function fillPantryList (list){
+    for(var i = 0; i < list.length; i++){
+        addCheckbox(list[i].attributes.Item);
+    }
 }
 
 // Handling browser back button
