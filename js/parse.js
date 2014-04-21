@@ -13,7 +13,7 @@ function loadPantry(userID, successCallback) {
                 list.push(results[i]);
                 
             }
-            callback(list);
+            successCallback(list);
             return list;
         },
         
