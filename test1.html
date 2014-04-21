@@ -27,10 +27,10 @@
         <a id="searchButton" class="btn btn-default btn-lg" onclick="showresult()">show result</a>
       <script>
     function showresult(){
-    var userID ='103';
-    var promise = backendGetRecipe(userID);
+    var userID ='101';
+    var promise = loadPantry(userID);
     promise.done(function() {
-        alert(promise[0].attributes.recipeName);
+        console.log(promise);
     });
 }
         </script>

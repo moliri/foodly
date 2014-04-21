@@ -13,6 +13,7 @@ function loadPantry(userID, successCallback) {
                 list.push(results[i]);
                 
             }
+            
             successCallback(list);
             return list;
         },
@@ -21,7 +22,7 @@ function loadPantry(userID, successCallback) {
             alert("Error: " + error.code + " " + error.message); 
         }
     });
-
+    return query;
 }
 
 function backendAddRecipe(userID,recipeID,recipeName, picURL) {
