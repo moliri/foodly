@@ -279,6 +279,7 @@ a:focus {
 
 .content {
     height: 100%;
+	width: 100%;
 	padding-top: 50px;
 	text-align: center;
     position: absolute;
@@ -359,13 +360,21 @@ a:focus {
 	
 }
 
-#cblist {
+#pantrylist {
 	background-color: #47D1D1;
 	color: #ffffff;
 	border-radius: 5px;
-	text-align: left;
 	padding: 20px;
 	opacity: 0.8;
+}
+
+#emptyMsg {
+	text-align: center;
+}
+
+#cblist {
+
+	text-align: left;
 	
 }
 

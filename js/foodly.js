@@ -8,9 +8,7 @@ $(document).on('pageinit', '#intropage', function(){
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
-	var container = $('#cblist');
-	var inputs = container.find('input');
-	var id = inputs.length+1;
+	var container = $('#emptyMsg');
 	$('<h6> Time to fill up your pantry! </h6>').appendTo(container);
 	$("#searchButton").click(searchRecipes);
 	$('#btnSave').click(function() {
@@ -156,16 +154,18 @@ function searchRecipes() {
 
 function addCheckbox(name) {
 	
-	$('#cblist').empty();
+	$('#emptyMsg').empty();
 	var container = $('#cblist');
 	var inputs = container.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
+		$("div.ui-controlgroup-controls").html();
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
-		$('<span class="input-group-btn">').appendTo(container);
-		$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
-		$('</span>').appendTo(container);
+		$('</div>').appendTo(container);
+	//	$('<span class="input-group-btn">').appendTo(container);
+	//	$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
+	//	$('</span>').appendTo(container);
 		$('<br />').appendTo(container);
 	}
 	
