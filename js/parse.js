@@ -1,6 +1,29 @@
 
 Parse.initialize("p3WFau7rwXnsUVQKNOhSbuztub7D8fe4q2unlAm9", "lWi3UcUdbfQRF9P9H1oF1idIW6LhUq7dFXck5RM1");
 
+function loadPantry(userID, successCallback) {
+    var table = Parse.Object.extend('Pantry');
+    var query = new Parse.Query(table);
+    var list = [];
+    
+    query.equalTo('userID',userID);
+    query.find({
+        success : function (results) {
+            for(var i = 0; i < results.length; i++){
+                list.push(results[i]);
+                
+            }
+            callback(list);
+            return list;
+        },
+        
+        error : function (error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+
+}
+
 function backendAddRecipe(userID,recipeID,recipeName, picURL) {
                 
     var table = Parse.Object.extend("Recipe");
