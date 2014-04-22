@@ -15,7 +15,7 @@ $(document).on('pageinit', '#intropage', function(){
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
 	var container = $('#emptyMsg');
-	$('<h6> Time to fill up your pantry! </h6>').appendTo(container);
+	$('<h6> Add items to your pantry or use the ones below. </h6>').appendTo(container);
 	$("#searchButton").click(function () {
         $('#recipes .recipeList').empty();
         searchRecipes(populateRecipeList);
