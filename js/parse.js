@@ -38,7 +38,7 @@ function backendAddRecipe(userID,recipeID,recipeName, picURL) {
     RecipeTable.save(null, {
       success: function(RecipeTable) {
         // Execute any logic that should take place after the object is saved.
-        alert('New object created with objectId: ' + RecipeTable.id);
+        alert('Successfully added into your favorite recipes!');
       },
       error: function(RecipeTable, error) {
         

@@ -331,7 +331,7 @@ function updateRecipeItem() {
     var ingredients = recipeObjList[clickedIndex].ingredientLines;
     $('#recipeItem .ingredientList').empty();
     for (var i = 0; i < ingredients.length; i++) {
-        $('#recipeItem .ingredientList').append("<li>"+ ingredients[i] + "</li>"); 
+        $('#recipeItem .ingredientList').append('<li  style="white-space: normal !important">'+ ingredients[i] + '</li>'); 
     }
     $('#recipeItem .ingredientList').listview("refresh");
     $('#favorite').click(function () {
