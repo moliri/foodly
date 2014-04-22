@@ -14,16 +14,12 @@ $(document).on('pageinit', '#intropage', function(){
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
-<<<<<<< HEAD
 	var container = $('#emptyMsg');
 	$('<h6> Time to fill up your pantry! </h6>').appendTo(container);
-	$("#searchButton").click(searchRecipes);
-=======
 	$("#searchButton").click(function () {
         $('#recipes .recipeList').empty();
         searchRecipes(populateRecipeList);
     });
->>>>>>> origin/accounts
 	$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
 						$('#newItem').val('');
@@ -48,17 +44,7 @@ $(document).on('pageinit','#search',function() {
     loadPantry(user_id,fillPantryList);
 });
 
-<<<<<<< HEAD
-//Link to individual recipe page from recipelist
-$(document).on('pageinit','#recipeList',function(){
-	$('#recipeBtn').click(function(){
-			$.mobile.changePage('#recipe');
-	
-		
-	});
-});
 
-=======
 function fillRecipeListArr(data, callback) {
         recipeList = [];   
         $.each(data, function (index, obj) {
@@ -76,7 +62,7 @@ function fillPantryList (list){
         addCheckbox(list[i].attributes.Item);
     }
 }
->>>>>>> origin/accounts
+
 
 // Handling browser back button
 
@@ -230,7 +216,6 @@ function addCheckbox(name) {
 	}
 	
 }
-<<<<<<< HEAD
 
 function deleteCheckbox(name) {
     $('#cblist').remove('cb1');
@@ -243,8 +228,6 @@ function deleteCheckbox(name) {
 }
 
 var temp_url = new Array(10);
-=======
->>>>>>> origin/accounts
    
 /* recipe class */
 function recipe() {
