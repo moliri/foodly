@@ -328,7 +328,8 @@ function updateRecipeItem() {
     $('#numberOfServings').text(obj.numberOfServings);
     $('#timeOfPrep').text(obj.totalTimeInSeconds/60 + " minutes");
         
-    var ingredients = recipeObjList[clickedIndex].ingredientLines
+    var ingredients = recipeObjList[clickedIndex].ingredientLines;
+    $('#recipeItem .ingredientList').empty();
     for (var i = 0; i < ingredients.length; i++) {
         $('#recipeItem .ingredientList').append("<li>"+ ingredients[i] + "</li>"); 
     }

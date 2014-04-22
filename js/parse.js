@@ -1,4 +1,3 @@
-
 Parse.initialize("p3WFau7rwXnsUVQKNOhSbuztub7D8fe4q2unlAm9", "lWi3UcUdbfQRF9P9H1oF1idIW6LhUq7dFXck5RM1");
 
 function loadPantry(userID, successCallback) {
