@@ -214,7 +214,7 @@ function addCheckbox(name) {
 	//	$('<span class="input-group-btn">').appendTo(container);
 	//	$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
 	//	$('</span>').appendTo(container);
-		$('<br />').appendTo(container);
+	//	$('<br />').appendTo(container);
 		$('#cblist').trigger("create");
 	}
 	
