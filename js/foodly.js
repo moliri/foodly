@@ -202,18 +202,22 @@ function addCheckbox(name) {
 	
 	$('#emptyMsg').empty();
 	var container = $('#cblist');
-	var inputs = container.find('input');
+	var inputs = container.find('div').find('input');
+	//var divs = container.find('div');
+	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-		$("div.ui-controlgroup-controls").html();
+		$("div.ui-checkbox").html();
+		
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
-		$('</div>').appendTo(container);
 	//	$('<span class="input-group-btn">').appendTo(container);
 	//	$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
 	//	$('</span>').appendTo(container);
 		$('<br />').appendTo(container);
+		$('#cblist').trigger("create");
 	}
+	
 	
 }
 
@@ -291,13 +295,14 @@ function getRecipeURL(recipeID, index, picURL, recipeName) {
 
 function updateSearch() {
 	
-    var len = $('#cblist').children().length; 
+    var inputs = $('#cblist').find('div');
+	var len = inputs.children().length; 
     
 	var myIngredients=[];
 		for (var i=0; i<=len; i++) {
 			var isChecked = $('#cb'+i).is(':checked');
 			if (isChecked) {
-				myIngredients.push($('#cb'+i).next("label").text());
+				myIngredients.push($('#cb'+i).val());
 				len++;
 			} else {
 				//updateSearch(); 
