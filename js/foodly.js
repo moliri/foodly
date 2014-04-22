@@ -1,16 +1,29 @@
+/* user id */
+var user_id;
+var clickedIndex;
+var temp;
+
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
-	$('#startbtn').click(function(){   
+	$('#startbtn').click(function(){ 
+		user_id = $('#userID').val();
 		$.mobile.changePage('#search');  
         return false;   
-        });  
+        }); 
 });
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
+<<<<<<< HEAD
 	var container = $('#emptyMsg');
 	$('<h6> Time to fill up your pantry! </h6>').appendTo(container);
 	$("#searchButton").click(searchRecipes);
+=======
+	$("#searchButton").click(function () {
+        $('#recipes .recipeList').empty();
+        searchRecipes(populateRecipeList);
+    });
+>>>>>>> origin/accounts
 	$('#btnSave').click(function() {
 						addCheckbox($('#newItem').val());
 						$('#newItem').val('');
@@ -22,15 +35,20 @@ $(document).on('pageinit','#search',function() {
 					});	
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
-            
             addCheckbox($('#newItem').val());
 			deleteCheckbox($('#newItem').val());
 			$('#newItem').val('');
 			updateSearch();
         }
     });
+    $('#favList').click(function() {
+    	data = backendGetRecipe(user_id, fillRecipeListArr);  
+        $.mobile.changePage('#recipeList');
+    });
+    loadPantry(user_id,fillPantryList);
 });
 
+<<<<<<< HEAD
 //Link to individual recipe page from recipelist
 $(document).on('pageinit','#recipeList',function(){
 	$('#recipeBtn').click(function(){
@@ -40,21 +58,51 @@ $(document).on('pageinit','#recipeList',function(){
 	});
 });
 
+=======
+function fillRecipeListArr(data, callback) {
+        recipeList = [];   
+        $.each(data, function (index, obj) {
+            var name = obj.attributes.recipeName;
+            var id = obj.attributes.recipeID;
+            var picURL = obj.attributes.picURL;
+            recipeList.push(new prelim_recipe(name, id, picURL));
+        });
+        callback();
+        return;
+}
+
+function fillPantryList (list){
+    for(var i = 0; i < list.length; i++){
+        addCheckbox(list[i].attributes.Item);
+    }
+}
+>>>>>>> origin/accounts
 
 // Handling browser back button
+
 $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   
   if (direction === 'back') {
-    recipeList = [];
-    $('#recipes .recipeList').empty();
+    var page = $.mobile.activePage;
+    
+    if(page.is('#recipeItem')){
+        $('#recipes .recipeList').empty();
+        populateRecipeList();
+    }
+    
+    if(page.is('#recipeList')){
+        recipeList = [];
+        $('#recipes .recipeList').empty();
+    }
+    
   }
   
 });
 
 /* global array to store the recipes */
-var recipeList = [];
-var recipeObjList = new Array(10);
+var recipeList = new Array();
+var recipeObjList = new Array();
 
 /* global object to store API keys & related logic */
 var yummlyAPIKeys = {
@@ -102,7 +150,9 @@ function getIngredients(ingredients) {
         
 /* need to take care of undefined case */
 
-function searchRecipes() {
+function searchRecipes(callback) {
+    recipeList = [];
+
 	var ingreds = updateSearch();   
     
 	var foods = getIngredients(ingreds);
@@ -143,10 +193,20 @@ function searchRecipes() {
         if(recipesOK){
             for(var i = 0; i < 10; i++){
                 if(data.matches[i]) { //check for undefined
-                    recipes += (data.matches[i].recipeName + "\n");
-                    recipeList.push(data.matches[i]);
+                    var obj = data.matches[i];
+                    var recipeName = data.matches[i].recipeName;
+                    var id = data.matches[i].id;
+                    var picURL;
+                    if (obj.smallImageUrls.length !== 0) {
+                        picURL = obj.smallImageUrls[0]; 
+                    } else {
+                        picURL = "img/not_available.jpg";
+                    }
+                    recipeList.push(new prelim_recipe(recipeName, id, picURL));
                 }
             }
+            //alert(recipeList);
+            callback();
             $.mobile.changePage('#recipeList');
         }
 	});
@@ -170,6 +230,7 @@ function addCheckbox(name) {
 	}
 	
 }
+<<<<<<< HEAD
 
 function deleteCheckbox(name) {
     $('#cblist').remove('cb1');
@@ -182,6 +243,8 @@ function deleteCheckbox(name) {
 }
 
 var temp_url = new Array(10);
+=======
+>>>>>>> origin/accounts
    
 /* recipe class */
 function recipe() {
@@ -192,19 +255,56 @@ function recipe() {
         this.ingredientLines = '';
         this.totalTimeInSeconds = '';
         this.numberOfServings = '';
+        this.largePicURL = '';
 }   
 
-function recipe(recipeName, recipeID, picURL, recipeURL, 
-                ingredientLines, totalTimeInSeconds, numberOfServings) {
-	this.recipeName = recipeName;
-	this.id = recipeID;
-	this.picURL = picURL;
-	this.recipeURL = recipeURL;
+
+function recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings, largePicURL) {
+    this.recipeName = recipeName;
+    this.id = recipeID;
+    this.picURL = picURL;
+    this.recipeURL = recipeURL;
     this.ingredientLines = ingredientLines;
     this.totalTimeInSeconds = totalTimeInSeconds;
     this.numberOfServings = numberOfServings;
+    this.largePicURL = largePicURL;
 }
 
+/* preliminary recipe class */
+function prelim_recipe() {
+    this.recipeName = '';
+    this.id = '';
+    this.picURL = '';
+}
+
+function prelim_recipe(recipeName, recipeID, picURL) {
+    this.recipeName = recipeName;
+    this.id = recipeID;
+    this.picURL = picURL;
+}
+
+// makes an API call when users click on individual recipes from the recipe list screen
+// recipeID should be a string (although js will probably stringify it)
+/*
+function getRecipeURL(recipeID, index, picURL, recipeName) {
+    var APIBase = "http://api.yummly.com/v1/api/recipe/";
+    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
+    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
+    var callback = "&callback=?";
+    var queryURL = APIBase + recipeID + appID + appKey + callback;
+    
+    $.getJSON(queryString, function(data){
+        if(data && data.source){
+        
+            recipeObjList[index].recipeURL = data.source.sourceRecipeUrl;
+            temp_url[index] = data.source.sourceRecipeUrl;
+            $('#recipes .recipeList').append('<li><a href="'+ data.source.sourceRecipeUrl +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
+            $('#recipes .recipeList').listview("refresh");
+
+        }
+    });
+}
+*/
 
 function updateSearch() {
 	
@@ -225,9 +325,35 @@ function updateSearch() {
 
 
 /* starting script for recipe list page */
-$(document).on('pagebeforeshow', '#recipeList', populateRecipeList);
+$(document).on('pageinit', '#recipeList', function () {
+		clickedIndex = -1;
+        $('#recipes .recipeList .listItem').click(updateRecipeItem);
 
-	
+})
+
+$(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
+
+function updateRecipeItem() {
+    var obj = recipeObjList[clickedIndex];
+    $('#recipeTitle').text(obj.name);
+    $('#picURL').attr("src", obj.images[0].hostedLargeUrl);
+    $('#numberOfServings').text(obj.numberOfServings);
+    $('#timeOfPrep').text(obj.totalTimeInSeconds/60 + " minutes");
+        
+    var ingredients = recipeObjList[clickedIndex].ingredientLines
+    for (var i = 0; i < ingredients.length; i++) {
+        $('#recipeItem .ingredientList').append("<li>"+ ingredients[i] + "</li>"); 
+    }
+    $('#recipeItem .ingredientList').listview("refresh");
+    $('#favorite').click(function () {
+        backendAddRecipe(user_id, obj.id, obj.name, obj.images[0].hostedSmallUrl);
+    });
+    $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
+}
+
+
+
+/*
 function createList()  {
 	var len = recipeObjList.length;
 	for (var i=0; i<len ;i++)
@@ -237,43 +363,50 @@ function createList()  {
 	}
 	$('#recipes .recipeList').listview("refresh");
 }
-
+*/
 
 
 function populateRecipeList() {
+    recipeObjList = [];
 	var APIBase = "http://api.yummly.com/v1/api/recipe/";
     var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
     var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
     var callback = "&callback=?";
     //$('#recipes .recipeList li').remove(); //clear the currrent list, may not be necessary
 	$.each(recipeList, function(index, obj) {
-		var picURL;
-		if (obj.smallImageUrls.length !== 0) {
-			picURL = obj.smallImageUrls[0]; 
-		} else {
-			picURL = "img/not_available.jpg";
-		}
-
-        
+		var picURL = obj.picURL;   
 		var recipeName =  obj.recipeName;
 		var recipeID = obj.id;
     	var queryURL = APIBase + recipeID + appID + appKey + callback;
     	$.getJSON(queryURL, function(data){
         	if(data && data.source){
-            	var recipeURL = data.source.sourceRecipeUrl;
-                var ingredientLines = data.ingredientLines;
+                temp = data;
+                //alert(temp);
+        		var ingredientLines = data.ingredientLines;
                 var totalTimeInSeconds = data.totalTimeInSeconds;
                 var numberOfServings = data.numberOfServings;
-            	$('#recipes .recipeList').append('<li><a href="'+ recipeURL +'"><img src="'+ picURL +'"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
+            	var recipeURL = data.source.sourceRecipeUrl;
+            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'" style="width:auto;height:auto;"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
-        	recipeObjList[index] = new recipe(recipeName, recipeID, picURL, recipeURL, ingredientLines, totalTimeInSeconds, numberOfServings);
+        	recipeObjList.push(data);
     	});	
   	});
   	return;
 }
 
+function GetIndex(sender)
+{   
+    var aElements = sender.parentNode.parentNode.getElementsByTagName("a");
+    var aElementsLength = aElements.length;
 
-
-		
-
+    var index;
+    for (var i = 0; i < aElementsLength; i++)
+    {
+        if (aElements[i] === sender) //this condition is never true
+        {
+            clickedIndex = i;
+            return clickedIndex;
+        }
+    }
+}

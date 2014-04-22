@@ -23,6 +23,11 @@
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+
+    <!-- Parse files -->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script type="text/JavaScript" src="js/parse.js"></script>
+
     <link href="css/foodly.css" rel="stylesheet">
     <script src="js/foodly.js"></script>
 </head>
@@ -31,6 +36,7 @@
 
 	<!-- Intro Page -->
     <div data-role="page" id="intropage" class="intro"> 
+<<<<<<< HEAD
         
         <div data-role="panel" id="introPanel" data-theme="b">
             <ul data-role="listview" class="panelList">
@@ -44,12 +50,17 @@
             <a href="#introPanel" data-icon="bars" id="recipehead">Menu</a>
             <h1> Foodly </h1>
         </div>
+=======
+
+>>>>>>> origin/accounts
         <div data-role="content" class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Foodly</h1>
                         <p class="intro-text">Your pantry, your food.</p>
+
+                        <input type="text" name="name" id="userID" placeholder="Please enter your user ID.." value=""  />
                         <div class="page-scroll">
                             <a id="startbtn" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
@@ -63,9 +74,28 @@
 
 	<!-- Pantry Page -->
 	<div data-role="page" id="search"> 
+<<<<<<< HEAD
 	
         <div data-role="content" class="pantry" id="pantry">
         
+=======
+
+        <div data-role="panel" id="introPanel" data-theme="b">
+            <ul data-role="listview" class="panelList">
+                 <li><a href="#search"> My Pantry </a></li>
+                 <li><a href="#about"> About Foodly </a></li>
+                 <li><a href="#contact"> Follow Foodly </a></li>
+                 <li><a href="" id="favList"> My Favorites</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header">
+            <a href="#introPanel" data-icon="bars">Menu</a>
+            <h1> Foodly </h1>
+        </div>
+
+        <div data-role="content" class="pantry">
+>>>>>>> origin/accounts
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>My Pantry</h2>
 				<div id="addItem" class="input-group">
@@ -320,7 +350,40 @@
 			</div>
         </div>
     </div>
-	
+    
+    <!-- Recipe Item Test Page -->
+    <div data-role="page" id="recipeItem">
+        <div data-role="header" id="recipehead"> 
+            <h1 id="recipeTitle" style="white-space: normal !important"> </h1>
+        </div>
+        <div data-role="content" class="test" id="recipe">
+            <img src="" id="picURL" style="width: 290px; height:auto;">
+            <div>
+                <h3 style="margin-top: 1em;">Basic Info</h3>
+                <ul data-role="listview">
+                    <li> <span style="margin-right: 5em; float: left; width: 20px;"> <b>Servings:</b> </span> <span id="numberOfServings"></span> </li>
+                    <li> <span style="margin-right: 5em; float: left; width: 20px;"> <b>Prep Time:</b> </span> <span id="timeOfPrep"></span> </li>
+                </ul>
+
+                <div style="margin-top: 2.5em;">
+                    <a href="" id="favorite" data-role="button" data-icon="heart" data-theme="a">Favorite</a>
+                    <a href="" id="fullRecipeLink" data-role="button" data-icon="info" data-theme="a">Full Recipe</a>
+                </div>
+
+                <h3 style="margin-top: 1em;">Ingredients</h3>
+                <ul data-role="listview" class="ingredientList"> 
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- testing page -->
+    <div data-role="page" id="testing">
+        <div data-role="content" class="testing-content">
+            This page is for testing.
+        </div>
+    </div>
 	
 </body>
 </html>

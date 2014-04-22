@@ -147,8 +147,19 @@ a:focus {
 	background-color: #fff;
 }
 
-.intro-body {
+.intro{
     vertical-align: middle;
+    background: url(../img/intro-bg.jpg) no-repeat center scroll;
+    background-color: #47D1D1;
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.intro-body {
+    margin-top: 4em !important;
 }
 
 .ui-panel-wrapper {
@@ -279,6 +290,19 @@ a:focus {
 }
 
 
+#wrap{
+    text-align: center;
+}
+
+#foodPic{
+    max-width: 100%;
+}
+
+#recipehead{
+    color: #47D1D1;
+    background-color: #fff;
+}
+
 .content {
     height: 100%;
 	width: 100%;
@@ -306,6 +330,7 @@ a:focus {
 
 .ui-content {
 	
+	text-shadow: #47D1D1;
 }
 
 #map {
