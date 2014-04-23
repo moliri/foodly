@@ -1,5 +1,5 @@
 /* user id */
-var user_id;
+var user_id = "-1"; // THIS IS A RESERVED VALUE
 var clickedIndex;
 var temp;
 
@@ -41,7 +41,13 @@ $(document).on('pageinit','#search',function() {
     	data = backendGetRecipe(user_id, fillRecipeListArr);  
         $.mobile.changePage('#recipeList');
     });
-    loadPantry(user_id,fillPantryList);
+    
+});
+
+$(document).on('pagebeforeshow','#search', function (){
+    if(user_id !== "-1"){
+        loadPantry(user_id,fillPantryList);
+    }
 });
 
 
