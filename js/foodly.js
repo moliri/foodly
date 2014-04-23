@@ -207,8 +207,8 @@ function addCheckbox(name) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
+        backendAddPantry(user_id,name);
 		$("div.ui-checkbox").html();
-		
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
 	//	$('<span class="input-group-btn">').appendTo(container);
