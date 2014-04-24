@@ -21,7 +21,7 @@ $(document).on('pageinit','#search',function() {
         searchRecipes(populateRecipeList);
     });
 	$('#btnSave').click(function() {
-						addCheckbox($('#newItem').val());
+						addCheckbox($('#newItem').val(), true);
 						$('#newItem').val('');
 						updateSearch();
 					});
@@ -31,7 +31,7 @@ $(document).on('pageinit','#search',function() {
 					});	
     $('#newItem').bind('keypress', function (e) {
         if(e.keyCode === 13){
-            addCheckbox($('#newItem').val());
+            addCheckbox($('#newItem').val(), true);
 			deleteCheckbox($('#newItem').val());
 			$('#newItem').val('');
 			updateSearch();
@@ -65,7 +65,7 @@ function fillRecipeListArr(data, callback) {
 
 function fillPantryList (list){
     for(var i = 0; i < list.length; i++){
-        addCheckbox(list[i].attributes.Item);
+        addCheckbox(list[i].attributes.Item, false);
     }
 }
 
@@ -204,7 +204,7 @@ function searchRecipes(callback) {
 	});
 }
 
-function addCheckbox(name) {
+function addCheckbox(name, isNewItem) {
 	
 	$('#emptyMsg').empty();
 	var container = $('#cblist');
@@ -213,7 +213,9 @@ function addCheckbox(name) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-        backendAddPantry(user_id,name);
+        if(isNewItem){
+            backendAddPantry(user_id,name);
+        }
 		$("div.ui-checkbox").html();
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
