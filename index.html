@@ -43,7 +43,7 @@
                         <h1 class="brand-heading">Foodly</h1>
                         <p class="intro-text">Your pantry, your food.</p>
 
-                        <input type="text" name="name" id="userID" placeholder="Please enter your user ID..." value=""  />
+                        <input type="text" name="name" id="userID" placeholder="To view a saved pantry, create or enter a User ID..." value=""  />
                         <div class="page-scroll">
                             <a id="startbtn" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
@@ -58,7 +58,7 @@
 	<!-- Pantry Page -->
 	<div data-role="page" id="search"> 
 	
-        <div data-role="panel" id="introPanel" data-theme="a">
+        <div data-role="panel" id="introPanel1" data-theme="a">
             <ul data-role="listview" class="panelList">
                  <li style="white-space: normal !important"><a href="#search"> My Pantry </a></li>
                  <li style="white-space: normal !important"><a href="" id="favList"> My Favorites</a></li>
@@ -67,9 +67,9 @@
             </ul>
         </div>
 		
-		<div data-role="header">
-            <a href="#introPanel" data-icon="bars">Menu</a>
-            <h1> Foodly </h1>
+		<div data-role="header" id="recipehead">
+            <a href="#introPanel1" data-iconpos="notext" data-icon="bars">Menu</a>
+            <h1> My Pantry </h1>
         </div>
 
         <div data-role="content" class="pantry">
@@ -166,9 +166,21 @@
     <!-- Recipes Page -->
 	<div data-role="page" id="recipeList">
 	
-        <div data-role="header" id="recipehead"> 
+		<div data-role="panel" id="introPanel2" data-theme="a">
+            <ul data-role="listview" class="panelList">
+                 <li style="white-space: normal !important"><a href="#search"> My Pantry </a></li>
+                 <li style="white-space: normal !important"><a href="" id="favList"> My Favorites</a></li>
+                 <li style="white-space: normal !important"><a href="#about"> About Us </a></li>
+                 <li style="white-space: normal !important"><a href="#contact"> Follow Us </a></li>
+            </ul>
+        </div>
+		
+	
+        <div data-role="header" id="recipehead">
+			<a href="#introPanel2" data-iconpos="notext" data-icon="bars">Menu</a>
             <h1>Recipe List</h1> 
-         </div> 
+        </div> 
+		 
         <div data-role="content" id="recipes">
             <ul data-role="listview" class="recipeList">
             </ul>
@@ -181,6 +193,22 @@
 
 	<!-- About Page -->
 	<div data-role="page" id="about"> 
+		
+		<div data-role="panel" id="introPanel3" data-theme="a">
+            <ul data-role="listview" class="panelList">
+                 <li style="white-space: normal !important"><a href="#search"> My Pantry </a></li>
+                 <li style="white-space: normal !important"><a href="" id="favList"> My Favorites</a></li>
+                 <li style="white-space: normal !important"><a href="#about"> About Us </a></li>
+                 <li style="white-space: normal !important"><a href="#contact"> Follow Us </a></li>
+            </ul>
+        </div>
+		
+	
+        <div data-role="header" id="recipehead">
+			<a href="#introPanel3" data-iconpos="notext" data-icon="bars">Menu</a>
+            <h1>About Foodly</h1> 
+        </div> 
+		
         <div data-role="content" class="content">
         
             <div class="col-lg-8 col-lg-offset-2">
@@ -197,6 +225,21 @@
 	<!-- Contact Page -->
 	<div data-role="page" id="contact"> 
 	
+		<div data-role="panel" id="introPanel4" data-theme="a">
+            <ul data-role="listview" class="panelList">
+                 <li style="white-space: normal !important"><a href="#search"> My Pantry </a></li>
+                 <li style="white-space: normal !important"><a href="" id="favList"> My Favorites</a></li>
+                 <li style="white-space: normal !important"><a href="#about"> About Us </a></li>
+                 <li style="white-space: normal !important"><a href="#contact"> Follow Us </a></li>
+            </ul>
+        </div>
+		
+	
+        <div data-role="header" id="recipehead">
+			<a href="#introPanel4" data-iconpos="notext" data-icon="bars">Menu</a>
+            <h1>Follow Foodly</h1> 
+        </div> 
+	
         <div data-role="content" class="contact">
 			<div class="col-lg-8 col-lg-offset-2">
 					<h2>Follow Foodly</h2>
@@ -211,9 +254,21 @@
     
     <!-- Recipe Item Page -->
     <div data-role="page" id="recipeItem">
-        <div data-role="header" id="recipehead"> 
-            <h1 id="recipeTitle" style="white-space: normal !important"> </h1>
+	
+		<div data-role="panel" id="introPanel5" data-theme="a">
+            <ul data-role="listview" class="panelList">
+                 <li style="white-space: normal !important"><a href="#search"> My Pantry </a></li>
+                 <li style="white-space: normal !important"><a href="" id="favList"> My Favorites</a></li>
+                 <li style="white-space: normal !important"><a href="#about"> About Us </a></li>
+                 <li style="white-space: normal !important"><a href="#contact"> Follow Us </a></li>
+            </ul>
         </div>
+		
+        <div data-role="header" id="recipehead"> 
+            <a href="#introPanel5" data-iconpos="notext" data-icon="bars">Menu</a>
+			<h1 id="recipeTitle" style="white-space: normal !important"> </h1>
+        </div>
+		
         <div data-role="content" class="test" id="recipe">
             <img src="" id="picURL" style="width: 290px; height:auto;">
             <div>

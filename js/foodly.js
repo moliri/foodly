@@ -1,8 +1,7 @@
 /* user id */
-var user_id = "-1"; // THIS IS A RESERVED VALUE
+var user_id = ""; // THIS IS A RESERVED VALUE
 var clickedIndex;
 var temp;
-var currRecipe = new prelim_recipe();
 
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
@@ -43,12 +42,10 @@ $(document).on('pageinit','#search',function() {
         $.mobile.changePage('#recipeList');
     });
     
-});
-
-$(document).on('pagebeforeshow','#search', function (){
-    if(user_id !== "-1"){
+    if(user_id !== ""){
         loadPantry(user_id,fillPantryList);
     }
+    
 });
 
 
@@ -100,8 +97,8 @@ var recipeObjList = new Array();
 /* global object to store API keys & related logic */
 var yummlyAPIKeys = {
     _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
-    _keyArray : ["7ddb19332c3de6a14405af6bffae0aad", "007d17e544de591f7b7bc27ad695f2cd", "9660aeb80292c3128c93bd8e904e1490"],
-    _idArray : ["530cbd64","b8a751c0", "2daedd08"],
+    _keyArray : ["9660aeb80292c3128c93bd8e904e1490","007d17e544de591f7b7bc27ad695f2cd"],
+    _idArray : ["2daedd08","b8a751c0"],
     
     // get the request string to be appended to the search base url
     getRequestString : function (searchParams) {
@@ -224,7 +221,7 @@ function addCheckbox(name, isNewItem) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-        if(isNewItem){
+        if(isNewItem && user_id !== ""){
             backendAddPantry(user_id,name);
         }
 		$("div.ui-checkbox").html();
@@ -334,37 +331,18 @@ function updateSearch() {
 /* starting script for recipe list page */
 $(document).on('pageinit', '#recipeList', function () {
 		clickedIndex = -1;
-        $('#recipes .recipeList .listItem').click(function () {
-            updateRecipeItem();
-        });
+        $('#recipes .recipeList .listItem').click(updateRecipeItem);
 
-});
+})
 
 $(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
-
-$(document).on('pageinit', '#recipeItem', function () {
-        $('#favorite').click(function () {
-            backendAddRecipe(user_id, currRecipe.id, currRecipe.recipeName, currRecipe.picURL);
-        });
-});
 
 function updateRecipeItem() {
     var obj = recipeObjList[clickedIndex];
     $('#recipeTitle').text(obj.name);
-
-    currRecipe.recipeName = obj.name;
-    currRecipe.id =  obj.id; 
-    currRecipe.picURL = obj.images[0].hostedSmallUrl;
-
-    var image = obj.images[0].hostedLargeUrl;
-    if (image === undefined) {image = "img/not_available.jpg";}
-
-    $('#picURL').attr("src", image);
+    $('#picURL').attr("src", obj.images[0].hostedLargeUrl);
     $('#numberOfServings').text(obj.numberOfServings);
-
-    var totalTime = obj.totalTime;
-    if (totalTime === null) {totalTime = "Not Available";}
-    $('#timeOfPrep').text(totalTime);
+    $('#timeOfPrep').text(obj.totalTimeInSeconds/60 + " minutes");
         
     var ingredients = recipeObjList[clickedIndex].ingredientLines;
     $('#recipeItem .ingredientList').empty();
@@ -372,8 +350,12 @@ function updateRecipeItem() {
         $('#recipeItem .ingredientList').append('<li  style="white-space: normal !important">'+ ingredients[i] + '</li>'); 
     }
     $('#recipeItem .ingredientList').listview("refresh");
+    $('#favorite').click(function () {
+        backendAddRecipe(user_id, obj.id, obj.name, obj.images[0].hostedSmallUrl);
+    });
     $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
 }
+
 
 
 /*
@@ -409,7 +391,7 @@ function populateRecipeList() {
                 var totalTimeInSeconds = data.totalTimeInSeconds;
                 var numberOfServings = data.numberOfServings;
             	var recipeURL = data.source.sourceRecipeUrl;
-            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'" style="width:90px; height:60px;"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
+            	$('#recipes .recipeList').append('<li><a href="#recipeItem" onclick="GetIndex(this)" class="listItem"><img src="'+ picURL +'" style="width:auto;height:auto;"><p style="margin-top: -4px;font-size: 14px; font-weight: bold; white-space: normal !important">'+ recipeName +'</p></a></li>');
            	 	$('#recipes .recipeList').listview("refresh");
         	}
         	recipeObjList.push(data);
