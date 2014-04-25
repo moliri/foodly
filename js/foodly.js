@@ -42,7 +42,7 @@ $(document).on('pageinit','#search',function() {
         $.mobile.changePage('#recipeList');
     });
     
-    if(user_id !== "-1"){
+    if(user_id !== "-1" && user_id !== ""){
         loadPantry(user_id,fillPantryList);
     }
     
@@ -211,7 +211,7 @@ function addCheckbox(name, isNewItem) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-        if(isNewItem){
+        if(isNewItem && user_id !== "-1" && user_id !== ""){
             backendAddPantry(user_id,name);
         }
 		$("div.ui-checkbox").html();
