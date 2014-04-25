@@ -1,5 +1,5 @@
 /* user id */
-var user_id = "-1"; // THIS IS A RESERVED VALUE
+var user_id = ""; // THIS IS A RESERVED VALUE
 var clickedIndex;
 var temp;
 
@@ -42,7 +42,7 @@ $(document).on('pageinit','#search',function() {
         $.mobile.changePage('#recipeList');
     });
     
-    if(user_id !== "-1" && user_id !== ""){
+    if(&& user_id !== ""){
         loadPantry(user_id,fillPantryList);
     }
     
@@ -211,7 +211,7 @@ function addCheckbox(name, isNewItem) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-        if(isNewItem && user_id !== "-1" && user_id !== ""){
+        if(isNewItem && user_id !== ""){
             backendAddPantry(user_id,name);
         }
 		$("div.ui-checkbox").html();
