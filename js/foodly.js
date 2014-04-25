@@ -148,10 +148,20 @@ function searchRecipes(callback) {
 
 	var ingreds = updateSearch();   
     
+    var allowedCourse = $('#allowedCourse').val();
+    if (allowedCourse === "Any") {
+        allowedCourse = "";
+    } else {
+        allowedCourse = "&allowedCourse[]=course^course-"+allowedCourse;
+    }   
+
+    var maxTimeInMin = $('#maxTimeInMinutes').val();
+    maxTimeInMin = "&maxTotalTimeInSeconds=" + maxTimeInMin*60;
+
 	var foods = getIngredients(ingreds);
     
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
-	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods);
+	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods) + allowedCourse + maxTimeInMin;
 	
 	$(function() {	
         // Handle case where we are out of API calls...

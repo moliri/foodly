@@ -81,8 +81,33 @@
 						  <a id="btnSave" class="btn btn-add"> + </a>
 					   </span>
                 </div>
-				<br />
-				<div id="pantrylist" data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                
+                <!-- Advanced Search -->
+                <div data-role="collapsible" data-theme="a" data-content-theme="a">
+                    <h5>Advanced Search</h5>
+                    <!-- Allowed Course -->
+                    <label for="allowedCourse" class="select">Choose your course:</label>
+                    <select name="allowedCourse" id="allowedCourse" data-mini="true">
+                        <option value="Any"> Any </option>
+                        <option value="Appetizers">Appetizers</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Side Dishes">Side Dishes</option>
+                        <option value="Lunch and Snacks">Lunch and Snacks</option>
+                        <option value="Breakfast and Brunch">Breakfast and Brunch</option>
+                        <option value="Salads">Salads</option>
+                        <option value="Main Dishes">Main Dishes</option>
+                        <option value="Breads">Breads</option>
+                        <option value="Soups">Soups</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Condiments and Sauces">Condiments and Sauces</option>
+                        <option value="Cocktails">Cocktails</option>
+                    </select>
+                    <!-- Calorie slider -->
+                    <label for="maxTimeInMinutes" class="select">Max time (min):</label>
+                    <input type="range" name="maxTimeInMinutes" id="maxTimeInMinutes" value="60" min="0" max="150" data-highlight="true" />
+                </div>
+				
+                <div id="pantrylist" data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
 					<div id="emptyMsg">
 					</div>
 					<fieldset data-role="controlgroup" class="ui-corner-all ui-controlgroup ui-controlgroup-vertical">
