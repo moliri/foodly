@@ -174,7 +174,6 @@ a:focus {
 }
 
 .ui-panel-wrapper {
-    background: url(../img/intro-bg.jpg) no-repeat center scroll;
     background-color: #47D1D1;
 	vertical-align: middle;
 	text-align: center;
@@ -338,6 +337,7 @@ a:focus {
 
 .pantry {
 	padding: 2em 0 2em 0 ;
+	background: url(../img/intro-bg.jpg) no-repeat center scroll;
 }
 
 .ui-content {
@@ -435,6 +435,7 @@ label {
     color: #47D1D1;
     
 }
+
 
 
 #startbtn{
