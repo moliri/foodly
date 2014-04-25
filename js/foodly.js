@@ -42,7 +42,7 @@ $(document).on('pageinit','#search',function() {
         $.mobile.changePage('#recipeList');
     });
     
-    if(&& user_id !== ""){
+    if(user_id !== ""){
         loadPantry(user_id,fillPantryList);
     }
     
