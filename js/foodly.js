@@ -329,7 +329,9 @@ $(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
 
 $(document).on('pageinit', '#recipeItem', function () {
         $('#favorite').click(function () {
-            backendAddRecipe(user_id, currRecipe.id, currRecipe.recipeName, currRecipe.picURL);
+            if(user_id !== ""){
+                backendAddRecipe(user_id, currRecipe.id, currRecipe.recipeName, currRecipe.picURL);
+            }
         });
 });
 
