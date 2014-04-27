@@ -1,5 +1,7 @@
 Parse.initialize("p3WFau7rwXnsUVQKNOhSbuztub7D8fe4q2unlAm9", "lWi3UcUdbfQRF9P9H1oF1idIW6LhUq7dFXck5RM1");
 
+var debuggingBackend = false;
+
 function loadPantry(userID, successCallback) {
     var table = Parse.Object.extend('Pantry');
     var query = new Parse.Query(table);
@@ -58,10 +60,12 @@ function backendGetRecipe(userID, callback){
             for (var i = 0; i < results.length; i++) { 
                 var object = results[i];
                 list.push(object);
-                //alert(object.id+'---'+object.get('recipeName'))
             }
             
-            console.log(list);
+            if(debuggingBackend){
+                console.log(list);
+            }
+            
             callback(list, populateRecipeList);
             return list;
           },
@@ -85,7 +89,9 @@ function backendAddPantry(userID,Item) {
     PantryTable.save(null, {
       success: function(PantryTable) {
         // Execute any logic that should take place after the object is saved.
-        alert('New object created with objectId: ' + PantryTable.id);
+        if(debuggingBackend) {
+            alert('New object created with objectId: ' + PantryTable.id);
+        }
       },
       error: function(PantryTable, error) {
         
