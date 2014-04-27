@@ -1,5 +1,5 @@
 /* user id */
-var user_id = "-1"; // THIS IS A RESERVED VALUE
+var user_id = ""; // THIS IS A RESERVED VALUE
 var clickedIndex;
 var temp;
 var currRecipe = new prelim_recipe();
@@ -46,8 +46,20 @@ $(document).on('pageinit','#search',function() {
 });
 
 $(document).on('pagebeforeshow','#search', function (){
-    if(user_id !== "-1"){
+    if(user_id !== ""){
         loadPantry(user_id,fillPantryList);
+    }
+});
+
+$(document).on('pagebeforehide','#search',function () {
+
+    if(user_id !== ""){
+        //clear out (non-static) ingredient list when we navigate away from search page
+        var ingreds = $('#cblist').children();
+        // NOTE: 5 is the length of the hardcoded pantry. This constant will need to change if we change the pantry!
+        for(var i = 5; i < ingreds.length; i++){
+            ingreds[i].remove();
+        }
     }
 });
 
@@ -230,10 +242,6 @@ function addCheckbox(name, isNewItem) {
 		$("div.ui-checkbox").html();
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
 		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
-	//	$('<span class="input-group-btn">').appendTo(container);
-	//	$('<a id="btnDelete" class="btn btn-add"> x </a>').appendTo(container);
-	//	$('</span>').appendTo(container);
-	//	$('<br />').appendTo(container);
 		$('#cblist').trigger("create");
 	}
 	
@@ -288,29 +296,6 @@ function prelim_recipe(recipeName, recipeID, picURL) {
     this.id = recipeID;
     this.picURL = picURL;
 }
-
-// makes an API call when users click on individual recipes from the recipe list screen
-// recipeID should be a string (although js will probably stringify it)
-/*
-function getRecipeURL(recipeID, index, picURL, recipeName) {
-    var APIBase = "http://api.yummly.com/v1/api/recipe/";
-    var appID = "?_app_id=" + yummlyAPIKeys.getId() + "&";
-    var appKey = "_app_key=" + yummlyAPIKeys.getApiKey() + "&q=";
-    var callback = "&callback=?";
-    var queryURL = APIBase + recipeID + appID + appKey + callback;
-    
-    $.getJSON(queryString, function(data){
-        if(data && data.source){
-        
-            recipeObjList[index].recipeURL = data.source.sourceRecipeUrl;
-            temp_url[index] = data.source.sourceRecipeUrl;
-            $('#recipes .recipeList').append('<li><a href="'+ data.source.sourceRecipeUrl +'"><img src="'+ picURL +'"><h2>'+ recipeName +'</h2></a></li>');
-            $('#recipes .recipeList').listview("refresh");
-
-        }
-    });
-}
-*/
 
 function updateSearch() {
 	
@@ -374,20 +359,6 @@ function updateRecipeItem() {
     $('#recipeItem .ingredientList').listview("refresh");
     $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
 }
-
-
-/*
-function createList()  {
-	var len = recipeObjList.length;
-	for (var i=0; i<len ;i++)
-	{ 
-		console.log();
-		$('#recipes .recipeList').append('<li><a href="'+ recipeObjList[i].recipeURL+'"><img src="'+ recipeObjList[i].picURL +'"><h4>'+ recipeObjList[i].recipeName+'</h4></a></li>');
-	}
-	$('#recipes .recipeList').listview("refresh");
-}
-*/
-
 
 function populateRecipeList() {
     recipeObjList = [];
