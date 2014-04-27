@@ -236,7 +236,7 @@ function addCheckbox(name, isNewItem) {
 	//var inputs = divs.find('input');
 	var id = inputs.length+1;
 	if(name !== ""){
-        if(isNewItem){
+        if(isNewItem && (user_id !== "")){
             backendAddPantry(user_id,name);
         }
 		$("div.ui-checkbox").html();
