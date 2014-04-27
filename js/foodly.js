@@ -6,12 +6,19 @@ var currRecipe = new prelim_recipe();
 
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
-	$('#startbtn').click(function(){ 
-		user_id = $('#userID').val();
-		$.mobile.changePage('#search');  
-        return false;   
-        }); 
+	$('#startbtn').click(logIn);
+    $('#userID').bind('keypress', function (e){
+        if(e.keyCode === 13) {
+            logIn();
+        }
+    });
 });
+
+function logIn() {
+    user_id = $('#userID').val();
+    $.mobile.changePage('#search');  
+    return false;
+}
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
