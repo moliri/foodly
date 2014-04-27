@@ -41,7 +41,7 @@ h2 {
     letter-spacing: 1px;
     opacity: 1.0;
     color: white;
-    text-shadow: 0 0 7px #01DFD7;
+    /*text-shadow: 0 0 7px #01DFD7;*/
 }
 
 p {
@@ -152,7 +152,7 @@ a:focus {
     white-space: normal;
 }
 
-#introPanel {
+#introPanel1, #introPanel2, #introPanel3, #introPanel4, #introPanel5 {
 	text-transform: uppercase;
 	color: #47D1D1;
 	background-color: #fff;
@@ -337,7 +337,8 @@ a:focus {
 
 .pantry {
 	padding: 2em 0 2em 0 ;
-	background: url(../img/intro-bg.jpg) no-repeat center scroll;
+	background: url(../img/intro-bg.jpg) no-repeat scroll;
+	background-size: auto;
 }
 
 .ui-content {
@@ -414,12 +415,6 @@ a:focus {
 #cblist {
 	text-align: left;
 	
-}
-
-label {
-	font-size: 50px;
-	color: #000;
-	background: #FFF;
 }
 
 
