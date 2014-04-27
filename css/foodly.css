@@ -337,8 +337,9 @@ a:focus {
 
 .pantry {
 	padding: 2em 0 2em 0 ;
-	background: url(../img/intro-bg.jpg) no-repeat scroll;
+	background: url(../img/intro-bg.jpg) no-repeat center scroll;
 	background-size: auto;
+	background-attachment: fixed;
 }
 
 .ui-content {
