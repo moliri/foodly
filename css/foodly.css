@@ -169,6 +169,10 @@ a:focus {
     -o-background-size: cover;
 }
 
+#userID {
+	font-size: 14px;
+}
+
 .intro-body {
     margin-top: 4em !important;
 }
@@ -342,6 +346,10 @@ a:focus {
 	background-attachment: fixed;
 }
 
+#advSearch {
+	opacity: 0.85;
+}
+
 .ui-content {
 	
 	text-shadow: #47D1D1;
@@ -406,7 +414,7 @@ a:focus {
 	color: #ffffff;
 	border-radius: 5px;
 	padding: 0.5em 0.5em 0.5em 0.5em;
-	opacity: 0.8;
+	opacity: 0.85;
 }
 
 #emptyMsg {
@@ -455,7 +463,7 @@ a:focus {
     border: 1px solid #ff831c;
     color: #ffffff;
     background-color: #ff831c;
-	opacity: 0.6
+	opacity: 0.8;
 }
 
 .btn-default:hover,

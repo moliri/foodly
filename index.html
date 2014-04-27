@@ -43,7 +43,7 @@
                         <h1 class="brand-heading">Foodly</h1>
                         <p class="intro-text">Your pantry, your food.</p>
 
-                        <input type="text" name="name" id="userID" placeholder="To view a saved pantry, create or enter a User ID..." value=""  />
+                        <input type="text" name="name" id="userID" placeholder="Create or enter your User ID..." value=""  />
                         <div class="page-scroll">
                             <a id="startbtn" class="btn btn-circle">
                                 <i class="fa fa-angle-double-down animated"></i>
@@ -80,31 +80,6 @@
 					   <span class="input-group-btn">
 						  <a id="btnSave" class="btn btn-add"> + </a>
 					   </span>
-                </div>
-                
-                <!-- Advanced Search -->
-                <div data-role="collapsible" data-theme="a" data-content-theme="a">
-                    <h5>Advanced Search</h5>
-                    <!-- Allowed Course -->
-                    <label for="allowedCourse" class="select">Choose your course:</label>
-                    <select name="allowedCourse" id="allowedCourse" data-mini="true">
-                        <option value="Any"> Any </option>
-                        <option value="Appetizers">Appetizers</option>
-                        <option value="Desserts">Desserts</option>
-                        <option value="Side Dishes">Side Dishes</option>
-                        <option value="Lunch and Snacks">Lunch and Snacks</option>
-                        <option value="Breakfast and Brunch">Breakfast and Brunch</option>
-                        <option value="Salads">Salads</option>
-                        <option value="Main Dishes">Main Dishes</option>
-                        <option value="Breads">Breads</option>
-                        <option value="Soups">Soups</option>
-                        <option value="Beverages">Beverages</option>
-                        <option value="Condiments and Sauces">Condiments and Sauces</option>
-                        <option value="Cocktails">Cocktails</option>
-                    </select>
-                    <!-- Calorie slider -->
-                    <label for="maxTimeInMinutes" class="select">Max time (min):</label>
-                    <input type="range" name="maxTimeInMinutes" id="maxTimeInMinutes" value="60" min="0" max="150" data-highlight="true" />
                 </div>
 				
                 <div id="pantrylist" data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
@@ -155,9 +130,32 @@
 						</div>
 					</fieldset>
 				</div>
+				<!-- Advanced Search -->
+                <div id="advSearch" data-role="collapsible" data-theme="a" data-content-theme="a">
+                    <h5>Advanced Search</h5>
+                    <!-- Allowed Course -->
+                    <label for="allowedCourse" class="select">Choose your course:</label>
+                    <select name="allowedCourse" id="allowedCourse" data-mini="true">
+                        <option value="Any"> Any </option>
+                        <option value="Appetizers">Appetizers</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Side Dishes">Side Dishes</option>
+                        <option value="Lunch and Snacks">Lunch and Snacks</option>
+                        <option value="Breakfast and Brunch">Breakfast and Brunch</option>
+                        <option value="Salads">Salads</option>
+                        <option value="Main Dishes">Main Dishes</option>
+                        <option value="Breads">Breads</option>
+                        <option value="Soups">Soups</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Condiments and Sauces">Condiments and Sauces</option>
+                        <option value="Cocktails">Cocktails</option>
+                    </select>
+                    <!-- Calorie slider -->
+                    <label for="maxTimeInMinutes" class="select">Max time (min):</label>
+                    <input type="range" name="maxTimeInMinutes" id="maxTimeInMinutes" value="60" min="0" max="150" data-highlight="true" />
+                </div>
 				<br />
 				<a id="searchButton" class="btn btn-default btn-lg">Find Recipes</a>
-                
             </div>
         </div>
     </div>
