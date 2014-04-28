@@ -340,8 +340,7 @@ $(document).on('pageinit', '#recipeList', function () {
 });
 
 $(document).on('pagebeforehide','#recipeList', function () {
-    recipeList = [];
-    $('#recipes .recipeList').empty();
+   $('#recipes .recipeList').empty();
 });
 
 $(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
