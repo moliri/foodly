@@ -66,7 +66,7 @@ function backendGetRecipe(userID, callback){
                 console.log(list);
             }
             
-            callback(list, populateRecipeList);
+            callback(list);
             return list;
           },
           

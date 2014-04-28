@@ -1,8 +1,71 @@
+///////////////////////////////////////
+/* Global variables and objects */
+
 /* user id */
 var user_id = ""; // THIS IS A RESERVED VALUE
 var clickedIndex;
 var temp;
 var currRecipe = new prelim_recipe();
+
+/* global array to store the recipes */
+var recipeList = new Array();
+var recipeObjList = new Array();
+
+/* global object to store API keys & related logic */
+var yummlyAPIKeys = {
+    _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
+    _keyArray : ["7ddb19332c3de6a14405af6bffae0aad", "007d17e544de591f7b7bc27ad695f2cd", "9660aeb80292c3128c93bd8e904e1490"],
+    _idArray : ["530cbd64","b8a751c0", "2daedd08"],
+    
+    // get the request string to be appended to the search base url
+    getRequestString : function (searchParams) {
+        return "_app_id=" + this.getId() + "&_app_key=" + this.getApiKey() + "&q=" + searchParams + "&callback=?";
+    },
+    
+    // get the key currently in use
+    getApiKey : function () {
+        return this._keyArray[this._keyIndex];  
+    },
+    
+    // get the id currently in use
+    getId : function () {
+        return this._idArray[this._keyIndex];
+    },
+    
+    // cycle through api keys
+    changeKey : function () {
+        if(_keyIndex >= _keyArray.length){
+            this._keyIndex = 0;
+        }
+        else {
+            this._keyIndex++;
+        }    
+    } 
+};
+
+// Handling browser navigation
+$(window).on("navigate", function (event, data) {
+  var direction = data.state.direction;
+  
+  if (direction === 'back') {
+    var page = $.mobile.activePage;
+    
+    if(page.is('#recipeItem')){
+        $('#recipes .recipeList').empty();
+        populateRecipeList();
+    }
+    
+    if(page.is('#recipeList')){
+        recipeList = [];
+        $('#recipes .recipeList').empty();
+    }
+    
+  }
+  
+});
+
+///////////////////////////////////////
+/* start page events and functions */
 
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
@@ -19,6 +82,9 @@ function logIn() {
     $.mobile.changePage('#search');  
     return false;
 }
+
+///////////////////////////////////////
+/* Pantry page events and functions */
 
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
@@ -70,86 +136,14 @@ $(document).on('pagebeforehide','#search',function () {
     }
 });
 
-
-function fillRecipeListArr(data, callback) {
-        recipeList = [];   
-        $.each(data, function (index, obj) {
-            var name = obj.attributes.recipeName;
-            var id = obj.attributes.recipeID;
-            var picURL = obj.attributes.picURL;
-            recipeList.push(new prelim_recipe(name, id, picURL));
-        });
-        callback();
-        return;
-}
-
 function fillPantryList (list){
     for(var i = 0; i < list.length; i++){
         addCheckbox(list[i].attributes.Item, false);
     }
 }
 
-
-// Handling browser back button
-
-$(window).on("navigate", function (event, data) {
-  var direction = data.state.direction;
-  
-  if (direction === 'back') {
-    var page = $.mobile.activePage;
-    
-    if(page.is('#recipeItem')){
-        $('#recipes .recipeList').empty();
-        populateRecipeList();
-    }
-    
-    if(page.is('#recipeList')){
-        recipeList = [];
-        $('#recipes .recipeList').empty();
-    }
-    
-  }
-  
-});
-
-/* global array to store the recipes */
-var recipeList = new Array();
-var recipeObjList = new Array();
-
-/* global object to store API keys & related logic */
-var yummlyAPIKeys = {
-    _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
-    _keyArray : ["7ddb19332c3de6a14405af6bffae0aad", "007d17e544de591f7b7bc27ad695f2cd", "9660aeb80292c3128c93bd8e904e1490"],
-    _idArray : ["530cbd64","b8a751c0", "2daedd08"],
-    
-    // get the request string to be appended to the search base url
-    getRequestString : function (searchParams) {
-        return "_app_id=" + this.getId() + "&_app_key=" + this.getApiKey() + "&q=" + searchParams + "&callback=?";
-    },
-    
-    // get the key currently in use
-    getApiKey : function () {
-        return this._keyArray[this._keyIndex];  
-    },
-    
-    // get the id currently in use
-    getId : function () {
-        return this._idArray[this._keyIndex];
-    },
-    
-    // cycle through api keys
-    changeKey : function () {
-        if(_keyIndex >= _keyArray.length){
-            this._keyIndex = 0;
-        }
-        else {
-            this._keyIndex++;
-        }    
-    } 
-};
-
-//takes a javascript array of ingredients right now (may need to change for interface requirements?)
-//returns the API search term string
+// takes a javascript array of ingredients
+// returns the API search term string
 function getIngredients(ingredients) {
 	var str = "";
 	for(var i = 0; i < ingredients.length - 1; i++){
@@ -265,6 +259,28 @@ function deleteCheckbox(name) {
 	
 }
 
+function updateSearch() {
+	
+    var inputs = $('#cblist').find('div');
+	var len = inputs.children().length; 
+    
+	var myIngredients=[];
+		for (var i=0; i<=len; i++) {
+			var isChecked = $('#cb'+i).is(':checked');
+			if (isChecked) {
+				myIngredients.push($('#cb'+i).val());
+				len++;
+			} else {
+				//updateSearch(); 
+			}
+		}
+		return myIngredients;
+}
+
+
+/////////////////////////////////////////////////////////////////
+/* Recipe List and Recipe Page Objects, events, and functions */
+
 var temp_url = new Array(10);
    
 /* recipe class */
@@ -304,24 +320,17 @@ function prelim_recipe(recipeName, recipeID, picURL) {
     this.picURL = picURL;
 }
 
-function updateSearch() {
-	
-    var inputs = $('#cblist').find('div');
-	var len = inputs.children().length; 
-    
-	var myIngredients=[];
-		for (var i=0; i<=len; i++) {
-			var isChecked = $('#cb'+i).is(':checked');
-			if (isChecked) {
-				myIngredients.push($('#cb'+i).val());
-				len++;
-			} else {
-				//updateSearch(); 
-			}
-		}
-		return myIngredients;
+function fillRecipeListArr(data) {
+        recipeList = [];   
+        $.each(data, function (index, obj) {
+            var name = obj.attributes.recipeName;
+            var id = obj.attributes.recipeID;
+            var picURL = obj.attributes.picURL;
+            recipeList.push(new prelim_recipe(name, id, picURL));
+        });
+        populateRecipeList();
+        return;
 }
-
 
 /* starting script for recipe list page */
 $(document).on('pageinit', '#recipeList', function () {
