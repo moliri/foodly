@@ -54,12 +54,6 @@ $(window).on("navigate", function (event, data) {
         $('#recipes .recipeList').empty();
         populateRecipeList();
     }
-    
-    if(page.is('#recipeList')){
-        recipeList = [];
-        $('#recipes .recipeList').empty();
-    }
-    
   }
   
 });
@@ -339,6 +333,11 @@ $(document).on('pageinit', '#recipeList', function () {
             updateRecipeItem();
         });
 
+});
+
+$(document).on('pagebeforehide','#recipeList', function () {
+    recipeList = [];
+    $('#recipes .recipeList').empty();
 });
 
 $(document).on('pagebeforeshow', '#recipeItem', updateRecipeItem);
