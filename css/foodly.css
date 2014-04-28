@@ -406,6 +406,7 @@ a:focus {
 	font-weight: 5000;
 	color: #ffffff;
     background-color: #ff831c;
+	border: .25px solid #ff831c;
 	
 }
 
@@ -423,6 +424,12 @@ a:focus {
 
 #cblist {
 	text-align: left;
+	padding: 20px;
+	border-radius: 5px;
+	
+}
+
+#cbItem {
 	
 }
 
