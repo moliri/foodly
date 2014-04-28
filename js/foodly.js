@@ -7,6 +7,9 @@ var clickedIndex;
 var temp;
 var currRecipe = new prelim_recipe();
 
+// Get the size of the static (hard-coded) pantry
+var staticPantrySize;
+
 /* global array to store the recipes */
 var recipeList = new Array();
 var recipeObjList = new Array();
@@ -69,6 +72,8 @@ $(document).on('pageinit', '#intropage', function(){
             logIn();
         }
     });
+    
+    staticPantrySize = $('#cblist').children().length;
 });
 
 function logIn() {
@@ -123,8 +128,7 @@ $(document).on('pagebeforehide','#search',function () {
     if(user_id !== ""){
         //clear out (non-static) ingredient list when we navigate away from search page
         var ingreds = $('#cblist').children();
-        // NOTE: 5 is the length of the hardcoded pantry. This constant will need to change if we change the pantry!
-        for(var i = 5; i < ingreds.length; i++){
+        for(var i = staticPantrySize; i < ingreds.length; i++){
             ingreds[i].remove();
         }
     }
