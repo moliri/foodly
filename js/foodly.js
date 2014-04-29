@@ -230,7 +230,7 @@ function searchRecipes(callback) {
         }
         
         if(recipesOK){
-            for(var i = 0; i < 20; i++){
+            for(var i = 0; i < 10; i++){
                 if(data.matches[i]) { //check for undefined
                     var obj = data.matches[i];
                     var recipeName = data.matches[i].recipeName;
