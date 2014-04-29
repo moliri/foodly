@@ -319,6 +319,9 @@ a:focus {
     background-color: #fff;
 }
 
+#subtext{
+	color:#47D1D1;
+}
 .content {
     height: 100%;
 	width: 100%;
