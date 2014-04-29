@@ -87,7 +87,7 @@ function logIn() {
 
 
 function infobox() {
-	alert("Your User ID can be anything! Each individual name entered creates a personalized Pantry to store ingredients in. You can also save favorite recipes for future use! You can still progress without entering an ID, but your Pantry will not be saved once you exit Foodly.");
+	alert("Your User ID can be anything! Each individual ID allows you to save all your ingredients into a personalized Pantry. You can also save your favorite recipes for future use! You can continue without entering an ID, but your Pantry will not be saved once you exit Foodly.");
 }
 
 ///////////////////////////////////////
