@@ -83,6 +83,18 @@ function logIn() {
 }
 
 ///////////////////////////////////////
+/* about page events and functions */
+
+/* starting script for about page */
+$(document).on('pageinit','#about',function(){
+$('#favList2').click(function() {
+        $('#recipes .recipeList').empty();
+        data = backendGetRecipe(user_id, fillRecipeListArr);  
+        $.mobile.changePage('#recipeList');
+    });
+});
+
+///////////////////////////////////////
 /* Pantry page events and functions */
 
 /* starting script for pantry page */
@@ -111,6 +123,7 @@ $(document).on('pageinit','#search',function() {
         }
     });
     $('#favList').click(function() {
+        $('#recipes .recipeList').empty();
     	data = backendGetRecipe(user_id, fillRecipeListArr);  
         $.mobile.changePage('#recipeList');
     });
@@ -336,7 +349,14 @@ $(document).on('pageinit', '#recipeList', function () {
         $('#recipes .recipeList .listItem').click(function () {
             updateRecipeItem();
         });
+        
+        $('#favList1').click(function() {
+            //$('#introPanel2').
+            $('#recipes .recipeList').empty();
+            data = backendGetRecipe(user_id, fillRecipeListArr);  
+            $.mobile.changePage('#recipeList');
 
+        });
 });
 
 $(document).on('pagebeforehide','#recipeList', function () {
@@ -350,6 +370,12 @@ $(document).on('pageinit', '#recipeItem', function () {
             if(user_id !== ""){
                 backendAddRecipe(user_id, currRecipe.id, currRecipe.recipeName, currRecipe.picURL);
             }
+        });
+        
+        $('#favList4').click(function() {
+            $('#recipes .recipeList').empty();
+            data = backendGetRecipe(user_id, fillRecipeListArr);  
+            $.mobile.changePage('#recipeList');
         });
 });
 
@@ -377,7 +403,10 @@ function updateRecipeItem() {
         $('#recipeItem .ingredientList').append('<li  style="white-space: normal !important">'+ ingredients[i] + '</li>'); 
     }
     $('#recipeItem .ingredientList').listview("refresh");
-    $('#fullRecipeLink').attr("href", obj.source.sourceRecipeUrl);
+    
+    $('#fullRecipeLink').click(function(){
+        window.open(obj.source.sourceRecipeUrl);
+    });
 }
 
 function populateRecipeList() {
