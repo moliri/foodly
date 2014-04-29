@@ -499,6 +499,13 @@ a:focus {
     background-color: #ff831c;
 	opacity: 0.9
 }
+.btn-info {
+	border: 1px solid #ff831c;
+    outline: 0;
+    color: #ffffff;
+    background-color: #ff831c;
+	opacity: 0.5
+}
 
 .btn-add:hover,
 .btn-add:focus {
