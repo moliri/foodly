@@ -120,7 +120,7 @@ $('#favList3').click(function() {
 /* starting script for pantry page */
 $(document).on('pageinit','#search',function() {
 	var container = $('#emptyMsg');
-	$('<h6> Add items to your pantry or use the ones below. </h6>').appendTo(container);
+	$('<h5> Add items to your pantry or use the ones below. </h5>').appendTo(container);
 	$("#searchButton").click(function () {
         $('#recipes .recipeList').empty();
         searchRecipes(populateRecipeList);
