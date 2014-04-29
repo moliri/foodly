@@ -15,6 +15,11 @@ function loadPantry(userID, successCallback) {
                 
             }
             
+            if(debuggingBackend){
+                console.log('pantry:');
+                console.log(list);
+            }
+            
             successCallback(list);
             return list;
         },

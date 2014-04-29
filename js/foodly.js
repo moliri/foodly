@@ -95,6 +95,18 @@ $('#favList2').click(function() {
 });
 
 ///////////////////////////////////////
+/* follow us page events and functions */
+
+/* starting script for follow page */
+$(document).on('pageinit','#contact',function(){
+$('#favList3').click(function() {
+        $('#recipes .recipeList').empty();
+        data = backendGetRecipe(user_id, fillRecipeListArr);  
+        $.mobile.changePage('#recipeList');
+    });
+});
+
+///////////////////////////////////////
 /* Pantry page events and functions */
 
 /* starting script for pantry page */
