@@ -252,6 +252,24 @@ function searchRecipes(callback) {
 }
 
 function addCheckbox(name, isNewItem) {
+
+	/*
+	Need it to build this, now:
+
+	<li id="cbItem">
+		<div id='CB1'>
+			<a class="none" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 42px;padding-left: 0px;">
+				<fieldset data-role="controlgroup" >
+					<input type="checkbox" id="cb1" value="chicken" class="custom"> </input>
+					<label for="cb1" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;"> chicken </label>
+				</fieldset>
+			</a>
+			<a class="none" id="btnDelete" >
+			</a>
+		</div>
+	</li>
+	
+	*/
 	
 	$('#emptyMsg').empty();
 	var container = $('#cblist');
@@ -263,9 +281,15 @@ function addCheckbox(name, isNewItem) {
         if(isNewItem && (user_id !== "")){
             backendAddPantry(user_id,name);
         }
+		//adding checkbox item
 		$("div.ui-checkbox").html();
 		$('<input />', { type: 'checkbox', id: 'cb'+id, value: name, checked:"checked", class:"custom" }).appendTo(container);
-		$('<label />', { 'for': 'cb'+id, text: name }).appendTo(container);
+		$('<label />', { 'for': 'cb'+id, text: name, 'style' : 'border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;'}).appendTo(container);
+		//wrapping with formatting
+		$("div.ui-checkbox").wrap("<fieldset id='ctrlgrp' data-role='controlgroup'> </fieldset>");
+		$('#ctrlgrp').wrap("<a href='#' id='cblink' style='padding-top: 0px;padding-bottom: 0px;padding-right: 42px;padding-left: 0px;'> </a>");
+		$("a.none").wrapAll("<div id=CB"+ id + "> </div>");
+		$('#CB'+ id).wrap("<li id='cbItem'> </li>");
 		$('#cblist').trigger("create");
 	}
 	

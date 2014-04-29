@@ -85,7 +85,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2 id="h2"> My Pantry</h2>
 				<div id="addItem" class="input-group">
-				    <input id = "newItem" class="form-control" placeholder=" Add a pantry item... " type="text" >
+				    <input id = "newItem" class="form-control" placeholder=" Add a new pantry item... " type="text" >
 					   <span class="input-group-btn">
 						  <a id="btnSave" class="btn btn-add"> + </a>
 					   </span>
@@ -98,16 +98,13 @@
 						<div class="ui-controlgroup-controls" >
 							<ul id="cblist" data-role="listview" data-split-icon="delete" data-filter="true" data-filter-placeholder="Search your pantry...">    
 								<li id="cbItem">
-									<a href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 42px;padding-left: 0px;">
-										<fieldset data-role="controlgroup" >
-										
-										
-										
+									<a class="none" href="#" id="cblink" style="padding-top: 0px;padding-bottom: 0px;padding-right: 42px;padding-left: 0px;">
+										<fieldset id="ctrlgrp" data-role="controlgroup" >
 											<input type="checkbox" id="cb1" value="chicken" class="custom"> </input>
 											<label for="cb1" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;"> chicken </label>
 										</fieldset>
 									</a>
-									<a id="btnDelete" >
+									<a class="none" id="btnDelete" >
 									</a>
 								</li>
 							</ul>
