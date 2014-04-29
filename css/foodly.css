@@ -391,6 +391,13 @@ a:focus {
     transition: all .3s ease-in-out;
 }
 
+#popupBasic{
+	background-color: #ffffff;
+	color: #ff831c;
+	font-size: 18;
+	
+}
+
 #searchButton, #contactBtn {
 	color: #ffffff;
 }
