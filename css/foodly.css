@@ -516,6 +516,15 @@ a:focus {
 	opacity: 1.0
 }
 
+.btn-info:hover,
+.btn-info:focus {
+    border: 1px solid #ff831c;
+    outline: 0;
+    color: #ffffff;
+    background-color: #ff831c;
+	opacity: 1.0
+}
+
 .btn-huge {
     padding: 25px;
     font-size: 26px;
