@@ -396,7 +396,7 @@ a:focus {
 
 #popupBasic{
 	background-color: #ffffff;
-	color: #ff831c;
+	color: #000;
 	font-size: 18;
 	
 }
@@ -489,7 +489,7 @@ a:focus {
     outline: 0;
     color: #ffffff;
     background-color: #ff831c;
-	opacity: 1.0
+	opacity: 1.0;
 }
 
 .btn-add {
@@ -497,14 +497,7 @@ a:focus {
     outline: 0;
     color: #ffffff;
     background-color: #ff831c;
-	opacity: 0.9
-}
-.btn-info {
-	border: 1px solid #ff831c;
-    outline: 0;
-    color: #ffffff;
-    background-color: #ff831c;
-	opacity: 0.5
+	opacity: 0.9;
 }
 
 .btn-add:hover,
@@ -513,16 +506,28 @@ a:focus {
     outline: 0;
     color: #ffffff;
     background-color: #ff831c;
-	opacity: 1.0
+	opacity: 1.0;
+}
+
+.btn-info {
+	border: 1px solid #47D1D1;
+    outline: 0;
+    color: #ffffff;
+    background-color: #47D1D1;
+	opacity: 0.5;
 }
 
 .btn-info:hover,
 .btn-info:focus {
-    border: 1px solid #ff831c;
+    border: 1px solid #47D1D1;
     outline: 0;
     color: #ffffff;
-    background-color: #ff831c;
-	opacity: 1.0
+    background-color: #47D1D1;
+	opacity: 1.0;
+}
+
+#btnInfo {
+	color: #ffffff;
 }
 
 .btn-huge {

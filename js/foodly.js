@@ -69,6 +69,7 @@ $(window).on("navigate", function (event, data) {
 /* starting script for intro page */
 $(document).on('pageinit', '#intropage', function(){
 	$('#startbtn').click(logIn);
+	$('#btnInfo').click(infobox);
     $('#userID').bind('keypress', function (e){
         if(e.keyCode === 13) {
             logIn();
@@ -82,6 +83,11 @@ function logIn() {
     user_id = $('#userID').val();
     $.mobile.changePage('#search');  
     return false;
+}
+
+
+function infobox() {
+	alert("Your User ID can be anything! Each individual name entered creates a personalized Pantry to store ingredients in. You can also save favorite recipes for future use! You can still progress without entering an ID, but your Pantry will not be saved once you exit Foodly.");
 }
 
 ///////////////////////////////////////
