@@ -7,6 +7,8 @@ var clickedIndex;
 var temp;
 var currRecipe = new prelim_recipe();
 
+var MAX_RECIPES = 20;
+
 // Get the size of the static (hard-coded) pantry
 var staticPantrySize;
 
@@ -196,8 +198,10 @@ function searchRecipes(callback) {
 
 	var foods = getIngredients(ingreds);
     
+    var maxResults = '&maxResult=' + MAX_RECIPES;
+    
 	var apiURL = "http://api.yummly.com/v1/api/recipes?"
-	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods) + allowedCourse + maxTimeInMin;
+	var queryString = apiURL + yummlyAPIKeys.getRequestString(foods) + allowedCourse + maxTimeInMin + maxResults;
 	
 	$(function() {	
         // Handle case where we are out of API calls...
@@ -230,7 +234,7 @@ function searchRecipes(callback) {
         }
         
         if(recipesOK){
-            for(var i = 0; i < 10; i++){
+            for(var i = 0; i < MAX_RECIPES; i++){
                 if(data.matches[i]) { //check for undefined
                     var obj = data.matches[i];
                     var recipeName = data.matches[i].recipeName;
@@ -303,8 +307,6 @@ function updateSearch() {
 
 /////////////////////////////////////////////////////////////////
 /* Recipe List and Recipe Page Objects, events, and functions */
-
-var temp_url = new Array(10);
    
 /* recipe class */
 function recipe() {
