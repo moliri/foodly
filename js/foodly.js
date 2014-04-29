@@ -397,8 +397,13 @@ $(document).on('pageinit', '#recipeItem', function () {
             data = backendGetRecipe(user_id, fillRecipeListArr);  
             $.mobile.changePage('#recipeList');
         });
+		
+		 $('#fullRecipeLink').click(function(){
+        window.open(urlvalue);
+		});
 });
 
+var urlvalue;
 function updateRecipeItem() {
     var obj = recipeObjList[clickedIndex];
     $('#recipeTitle').text(obj.name);
@@ -423,10 +428,9 @@ function updateRecipeItem() {
         $('#recipeItem .ingredientList').append('<li  style="white-space: normal !important">'+ ingredients[i] + '</li>'); 
     }
     $('#recipeItem .ingredientList').listview("refresh");
+	urlvalue=obj.source.sourceRecipeUrl;
     
-    $('#fullRecipeLink').click(function(){
-        window.open(obj.source.sourceRecipeUrl);
-    });
+   
 }
 
 function populateRecipeList() {
