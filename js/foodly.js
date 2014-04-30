@@ -1,3 +1,5 @@
+"use strict";
+
 ///////////////////////////////////////
 /* Global variables and objects */
 
@@ -18,9 +20,9 @@ var recipeObjList = new Array();
 
 /* global object to store API keys & related logic */
 var yummlyAPIKeys = {
-    _keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
-    _keyArray : ["7ddb19332c3de6a14405af6bffae0aad", "007d17e544de591f7b7bc27ad695f2cd", "9660aeb80292c3128c93bd8e904e1490"],
-    _idArray : ["530cbd64","b8a751c0", "2daedd08"],
+    p_keyIndex : 0, // do not directly access members beginning with an underscore (they're private).
+    p_keyArray : ["7ddb19332c3de6a14405af6bffae0aad", "007d17e544de591f7b7bc27ad695f2cd", "9660aeb80292c3128c93bd8e904e1490"],
+    p_idArray : ["530cbd64", "b8a751c0", "2daedd08"],
     
     // get the request string to be appended to the search base url
     getRequestString : function (searchParams) {
@@ -29,21 +31,21 @@ var yummlyAPIKeys = {
     
     // get the key currently in use
     getApiKey : function () {
-        return this._keyArray[this._keyIndex];  
+        return this.p_keyArray[this.p_keyIndex];  
     },
     
     // get the id currently in use
     getId : function () {
-        return this._idArray[this._keyIndex];
+        return this.p_idArray[this.p_keyIndex];
     },
     
     // cycle through api keys
     changeKey : function () {
-        if(_keyIndex >= _keyArray.length){
-            this._keyIndex = 0;
+        if(this.p_keyIndex >= this.p_keyArray.length){
+            this.p_keyIndex = 0;
         }
         else {
-            this._keyIndex++;
+            this.p_keyIndex++;
         }    
     } 
 };
@@ -52,10 +54,8 @@ var yummlyAPIKeys = {
 $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   
-  if (direction === 'back') {
-    var page = $.mobile.activePage;
-    
-    if(page.is('#recipeItem')){
+  if (direction === 'back') {    
+    if($.mobile.activePage.is('#recipeItem')){
         $('#recipes .recipeList').empty();
         populateRecipeList();
     }
@@ -90,16 +90,18 @@ function infobox() {
 	alert("Your User ID can be anything! Each individual ID allows you to save all your ingredients into a personalized Pantry. You can also save your favorite recipes for future use! You can continue without entering an ID, but your Pantry will not be saved once you exit Foodly.");
 }
 
+function getFavorites (){
+    $('#recipes .recipeList').empty();
+    var data = backendGetRecipe(user_id, fillRecipeListArr);  
+    $.mobile.changePage('#recipeList');
+}
+
 ///////////////////////////////////////
 /* about page events and functions */
 
 /* starting script for about page */
 $(document).on('pageinit','#about',function(){
-$('#favList2').click(function() {
-        $('#recipes .recipeList').empty();
-        data = backendGetRecipe(user_id, fillRecipeListArr);  
-        $.mobile.changePage('#recipeList');
-    });
+    $('#favList2').click(getFavorites);
 });
 
 ///////////////////////////////////////
@@ -107,11 +109,7 @@ $('#favList2').click(function() {
 
 /* starting script for follow page */
 $(document).on('pageinit','#contact',function(){
-$('#favList3').click(function() {
-        $('#recipes .recipeList').empty();
-        data = backendGetRecipe(user_id, fillRecipeListArr);  
-        $.mobile.changePage('#recipeList');
-    });
+    $('#favList3').click(getFavorites);
 });
 
 ///////////////////////////////////////
@@ -142,11 +140,8 @@ $(document).on('pageinit','#search',function() {
 			updateSearch();
         }
     });
-    $('#favList').click(function() {
-        $('#recipes .recipeList').empty();
-    	data = backendGetRecipe(user_id, fillRecipeListArr);  
-        $.mobile.changePage('#recipeList');
-    });
+    
+    $('#favList').click(getFavorites);
     
 });
 
@@ -370,13 +365,7 @@ $(document).on('pageinit', '#recipeList', function () {
             updateRecipeItem();
         });
         
-        $('#favList1').click(function() {
-            //$('#introPanel2').
-            $('#recipes .recipeList').empty();
-            data = backendGetRecipe(user_id, fillRecipeListArr);  
-            $.mobile.changePage('#recipeList');
-
-        });
+        $('#favList1').click(getFavorites);
 });
 
 $(document).on('pagebeforehide','#recipeList', function () {
@@ -392,14 +381,10 @@ $(document).on('pageinit', '#recipeItem', function () {
             }
         });
         
-        $('#favList4').click(function() {
-            $('#recipes .recipeList').empty();
-            data = backendGetRecipe(user_id, fillRecipeListArr);  
-            $.mobile.changePage('#recipeList');
-        });
+        $('#favList4').click(getFavorites);
 		
-		 $('#fullRecipeLink').click(function(){
-        window.open(urlvalue);
+		$('#fullRecipeLink').click(function(){
+            window.open(urlvalue);
 		});
 });
 
