@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.phonegap.example"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+		<!-- versionCode is optional and Android only -->
+
+		<name>Foodly</name>
+
+		<description>
+			A mobile web app for kitchen owners that allows the user to input all groceries and ingredients as inventory and generates a list of online recipes that can be made.
+		</description>
+
+		<author href="https://github.com/moliri/foodly/" email="394-TeamPurple@googlegroups.com">
+			 Dylan Hirshkowitz, Leesha Maliakal, Zachariah Straight, Haodong Wang, Peiying Zhou, and Daniel Zuo
+		</author>
+
+	</widget>
